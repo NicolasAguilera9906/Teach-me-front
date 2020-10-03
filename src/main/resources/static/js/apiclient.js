@@ -1,5 +1,7 @@
 apiclient = (function () {
 
+    const url = "http://localhost:8080"
+
     function postClass(userEmail,clase){
         var data = $.ajax({
 
@@ -25,7 +27,6 @@ apiclient = (function () {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/login",
             type: 'POST',
-            headers: {"Access-Control-Allow-Origin": "*"},
             data: JSON.stringify(loginRequest),
             contentType: "application/json"
         });
@@ -34,10 +35,9 @@ apiclient = (function () {
 
     function getIndex(token) {
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/index.html",
+            url: url+"/index.html",
             type: 'GET',
-            headers: {"Authorization":token},
-            redirect: "/index.html"
+            headers: {"Authorization":token}
         });
         return data;
     }
