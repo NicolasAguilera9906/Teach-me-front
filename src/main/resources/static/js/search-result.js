@@ -9,7 +9,7 @@ var Modulesearch = (function () {
  */
 
     function getClasses(){
-        apiclient.getClassByName(localStorage.getItem("name"),_table);
+        apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem('Authorization'));
     }
 
     function formatDate(fecha){

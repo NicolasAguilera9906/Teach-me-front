@@ -2,13 +2,13 @@ apiclient = (function () {
 
     const url = "https://teache-me-front.herokuapp.com"
 
-    function postClass(userEmail,clase){
+    function postClass(userEmail,clase,token){
         var data = $.ajax({
-
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+userEmail+"/classes",
             type: 'POST',
             data: JSON.stringify(clase),
-            contentType: "application/json"
+            contentType: "application/json",
+            headers: {"Authorization": token}
         });
         return data;
     }
@@ -45,16 +45,25 @@ apiclient = (function () {
         return data;
     }
 
-    function getClassByName(class_name, callback) {
-        $.getJSON("https://teach2-me.herokuapp.com/api/v1/classes?name="+class_name, function (data) {
-            callback(data);
-        });
+    function getTeachingClasses(email,callback,token){
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/teachingClasses",
+            type: 'GET',
+            headers: {"Authorization": token},
+            success : function (data, text) {
+                callback(data);
+            }});
+        return data;
     }
-
-    function getClassByName(class_name, callback) {
-        $.getJSON("https://teach2-me.herokuapp.com/api/v1/classes?name="+class_name, function (data) {
-            callback(data);
-        });
+    function getClassByName(class_name, callback , token) {
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/classes?name="+class_name,
+            type: 'GET',
+            headers: {"Authorization": token},
+            success : function (data, text) {
+                callback(data);
+            }});
+        return data;
     }
 
     return {
@@ -62,7 +71,8 @@ apiclient = (function () {
         getClassByName:getClassByName,
         postUser:postUser,
         postLogin:postLogin,
-        validatePage:validatePage
+        validatePage:validatePage,
+        getTeachingClasses:getTeachingClasses
     };
 
 })();

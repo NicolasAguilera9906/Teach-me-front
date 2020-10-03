@@ -2,7 +2,7 @@
 var login = (function () {
 
     //Esta se cambia por la del heroku antes de desplegar 'http://localhost:8080'
-    const urlAPI = 'http://localhost:8080';
+    const urlAPI = 'https://teache-me-front.herokuapp.com';
 
     function doLogin() {
         var email = $("#username").val();

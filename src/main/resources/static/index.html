@@ -103,19 +103,11 @@
 
                         <div class="col" >
 
-                            <select id="select_teaching_classes"  class="selectpicker"  title='Choose the class' data-width="50%" data-selected-text-format="count>2"  data-live-search="true">
-                                <option value="c1">c1</option>
-                                <option value="c1">c2</option>
-                                <option value="c1">c3</option>
-                                <option value="c1">c4</option>
-                                <option value="c1">c5</option>
-                                <option value="c1">c6</option>
-                                <option value="c1">c7</option>
+                            <select id="teaching_classes"  class="selectpicker"  title='Choose the class' data-width="50%" data-selected-text-format="count>2"  data-live-search="true">
                             </select>
 
                         </div>
                     </div>
-
 
                 </div>
             </div>
@@ -128,6 +120,11 @@
 
 </body>
 
+<script>
+    $(document).ready(function(){
+        Moduleindex.getTeachingClasses()
+    });
+</script>
 <script src="js/index.js"></script>
 <script src="js/accept.js"></script>
 <script src="js/apiclient.js"></script>

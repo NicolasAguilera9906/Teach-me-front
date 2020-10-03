@@ -47,7 +47,7 @@ var ModuleCreate = (function () {
             "dateOfInit": datastring,
             "dateOfEnd": datastring1
             };
-        apiclient.postClass("nicolas@gmail.com",clase).then(function (){
+        apiclient.postClass(localStorage.getItem('username'),clase,localStorage.getItem('Authorization')).then(function (){
             console.log("post succesful");
             Swal.fire({
                 icon: 'success',
