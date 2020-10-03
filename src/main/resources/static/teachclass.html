@@ -7,10 +7,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script type="text/javascript" src="js/apiclient.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
+    <script type="text/javascript" src="js/teaching-class.js"></script>
     <script>
         function loadapp(){
             validator().loadPage();
+            ModuleTeachingClasse.getClass();
         }
     </script>
 
@@ -50,13 +53,13 @@
 
                     <div class="row">
                         <div class="col" >
-                            <h5 id="class_name">Clase 1</h5>
+                            <h5 id="class_name"><b>Class Name: </b> </h5>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col" >
-                            <p class="h5">Class description</p>
+                            <p class="h5"><b>Class description</b></p>
                         </div>
                     </div>
 
@@ -68,7 +71,7 @@
 
                     <div class="row">
                         <div class="col" >
-                            <h5>Schedule</h5>
+                            <h5><b>Class description</b></h5>
                         </div>
                     </div>
 
@@ -76,21 +79,11 @@
                         <div class="col-lg" >
 
                             <div class="form-group">
-                                <div class="input-group date" id="datetimepicker_teach" data-target-input="nearest">
-                                    <input id="datetimepickerteach_input" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_teach" style="max-width: 95%;" readonly/>
-                                    <div class="input-group-append" data-target="#datetimepicker_teach" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
+                                <h id="date_of_init"> <b>Fecha de inicio: </b></h>
                             </div>
 
                             <div class="form-group">
-                                <div class="input-group date" id="datetimepicker_teach1" data-target-input="nearest">
-                                    <input id="datetimepickerteach_input1" type="text" class="form-control datetimepicker-input" data-target="#datetimepicker_teach1" style="max-width: 95%;" readonly/>
-                                    <div class="input-group-append" data-target="#datetimepicker_teach1" data-toggle="datetimepicker">
-                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                                    </div>
-                                </div>
+                                <h id="date_of_end"><b>Fecha de fin: </b></h>
                             </div>
 
                         </div>
@@ -99,8 +92,7 @@
 
                             <div class="btn-group-vertical" role="group" >
                                 <button type="button" class="btn btn-info">Delete class</button>
-                                <button type="button" class="btn btn-info">Accept students</button>
-                                <button type="button" class="btn btn-info">Start session</button>
+                                <button type="button" class="btn btn-info">View Requests</button>
                             </div>
 
                         </div>

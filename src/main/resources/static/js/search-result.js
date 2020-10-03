@@ -8,6 +8,8 @@ var Modulesearch = (function () {
     }
  */
 
+
+
     function getClasses(){
         apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem('Authorization'));
     }
@@ -31,13 +33,10 @@ var Modulesearch = (function () {
         })
     }
 
-
-
     function _table(classes){
         functions = _map(classes);
         $("#table_class > tbody").empty();
         functions.map(function(c){
-            console.log(c);
             $("#table_class > tbody").append(
                 "<tr>" +
                 "<td>" +"<a href='#'>"+ c.nombre+"</a>" + "</td>"+

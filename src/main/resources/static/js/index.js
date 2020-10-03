@@ -24,8 +24,9 @@ var Moduleindex = (function () {
         $(".selectpicker").selectpicker('refresh');
     }
 
+
     return {
         setName:setName,
-        getTeachingClasses:getTeachingClasses
+        getTeachingClasses:getTeachingClasses,
     };
 })();

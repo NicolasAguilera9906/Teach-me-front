@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <script type="text/javascript" src="js/teaching-class.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
     <script>
         function loadapp(){
@@ -122,11 +123,18 @@
 
 <script>
     $(document).ready(function(){
-        Moduleindex.getTeachingClasses()
+        Moduleindex.getTeachingClasses();
+        $('.selectpicker').on('change',function(){
+            $(this).find("option:selected").each(function(){
+                localStorage.setItem("class_id",$(this).attr("value"));
+                window.location.href="teachclass.html";
+            });
+        });
     });
 </script>
 <script src="js/index.js"></script>
 <script src="js/accept.js"></script>
 <script src="js/apiclient.js"></script>
+<script src="js/search-result.js"></script>
 <script src="js/login.js"></script>
 </html>
