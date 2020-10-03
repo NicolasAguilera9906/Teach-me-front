@@ -33,11 +33,14 @@ apiclient = (function () {
         return data;
     }
 
-    function getIndex(token) {
+    function validatePage(token,callback){
         var data = $.ajax({
-            url: url+"/index.html",
+            url: "https://teach2-me.herokuapp.com/validate",
             type: 'GET',
-            headers: {"Authorization":token}
+            headers: {"Authorization": token},
+            error: function (request, status, error) {
+                callback(request.responseText);
+            }
         });
         return data;
     }
@@ -59,7 +62,7 @@ apiclient = (function () {
         getClassByName:getClassByName,
         postUser:postUser,
         postLogin:postLogin,
-        getIndex:getIndex
+        validatePage:validatePage
     };
 
 })();

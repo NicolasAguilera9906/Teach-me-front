@@ -10,12 +10,9 @@ var login = (function () {
         var loginRequest = {username: email, password: passw};
         apiclient.postLogin(loginRequest).then(function(data, textStatus, request) {
             var token = request.getResponseHeader('Authorization');
-            apiclient.getIndex(token).then(function (){
-                localStorage.setItem('Authorization',token);
-                localStorage.setItem('username',email);
-                //localStorage.setItem('password',passw);
-                location.href = "index.html"
-            })
+            localStorage.setItem('Authorization',token);
+            localStorage.setItem('username',email);
+            location.href = urlAPI+"/index.html"
         });
     }
     return {

@@ -2,10 +2,11 @@ var validator = (function () {
 
     function loadPage(){
         var token = localStorage.getItem('Authorization');
-        if(token==null || token=='null'){
-            //alert("Debe loguearse");
-            location.href = "authenticate.html";
-        }
+        apiclient.validatePage(token,redirect);
+    }
+    function redirect(message){
+        //alert(message);
+        location.href = "authenticate.html";
     }
     return {
         loadPage:loadPage
