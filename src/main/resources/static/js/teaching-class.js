@@ -3,7 +3,7 @@ ModuleTeachingClasse = (function () {
     function getClass(){
         var token = localStorage.getItem('Authorization');
         var class_id = localStorage.getItem('class_id');
-        apiclient.getClassById(class_id,_write,token).then()
+        apiclient.getClassById(class_id,_write,token);
     }
 
     function formatDate(fecha){
