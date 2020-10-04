@@ -123,13 +123,6 @@
 
 <script>
     $(document).ready(function(){
-        Moduleindex.getTeachingClasses();
-        $('#teaching_classes').on('change',function(){
-            $(this).find("option:selected").each(function(){
-                localStorage.setItem("class_id",$(this).attr("value"));
-                window.location.href="teachclass.html";
-            });
-        });
         Moduleindex.getStudyingClasses();
         $('#studying_classes').on('change',function(){
             $(this).find("option:selected").each(function(){
@@ -137,6 +130,14 @@
                 window.location.href="selectclass.html";
             });
         });
+        /*Moduleindex.getTeachingClasses();
+        $('#teaching_classes').on('change',function(){
+            $(this).find("option:selected").each(function(){
+                localStorage.setItem("class_id",$(this).attr("value"));
+                window.location.href="teachclass.html";
+            });
+        });*/
+
     });
 </script>
 </html>
