@@ -7,6 +7,12 @@ var Moduleindex = (function () {
     }
 
     function getTeachingClasses(){
+        $('#studying_classes').on('change',function(){
+            $(this).find("option:selected").each(function(){
+                localStorage.setItem("studying_class_id",$(this).attr("value"));
+                window.location.href="selectclass.html";
+            });
+        });
         var email = localStorage.getItem('username');
         var token = localStorage.getItem('Authorization');
         apiclient.getTeachingClasses(email,_selectteachingclasses,token);
