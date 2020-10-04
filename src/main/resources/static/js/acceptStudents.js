@@ -1,17 +1,8 @@
 var ModuleAccept = (function () {
 
-
-
-    function getStudents(){
-        var class_id = localStorage.getItem('class_id');
-        apiclient.getRequest(localStorage.getItem('username'),class_id,_table,localStorage.getItem('Authorization'));
-    }
-
     function show(data){
         console.log(data);
     }
-
-
 
     function _map(list){
         return mapList = list.map(function(request){
@@ -19,15 +10,13 @@ var ModuleAccept = (function () {
                 nombre:request.student.firstName,
                 apellido:request.student.lastName,
                 correo:request.student.email
-            }
-        })
+            };
+        });
     }
-
-
 
     function _table(requests){
         console.log(requests);
-        functions = _map(requests);
+        var functions = _map(requests);
         $("#table_students > tbody").empty();
         functions.map(function(c){
             console.log(c);
@@ -36,10 +25,14 @@ var ModuleAccept = (function () {
                 "<td>" + c.nombre + "</td>"+
                 "<td>" + c.apellido + "</td>"+
                 "<td>" + c.correo + "</td>"+
-
                 "</tr>"
             );
         });
+    }
+
+    function getStudents(){
+        var class_id = localStorage.getItem("class_id");
+        apiclient.getRequest(localStorage.getItem("username"),class_id,_table,localStorage.getItem("Authorization"));
     }
 
     return {

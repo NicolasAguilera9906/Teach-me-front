@@ -1,42 +1,32 @@
 var ModuleSignup = (function () {
 
-    function validate(email,firstName,lastName,password){
-        var bool = true;
-
-        if (firstName=="") {
-            bool = false;
-            alertError('The name cannot be empty');
-        }
-
-        else if (lastName==""){
-            bool = false;
-            alertError('The last name cannot be empty');
-        }
-
-        else if (password==""){
-            bool = false;
-            alertError('The password cannot be empty');
-        }
-
-        else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))){
-            bool = false;
-            alertError('Enter a valid email');
-        }
-
-        return bool;
-
-    }
-
     function alertError(message){
         Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
+            icon: "error",
+            title: "Oops...",
             text: message
-        })
+        });
+    }
+
+    function validate(email,firstName,lastName,password){
+        var bool = true;
+        if (firstName==="") {
+            bool = false;
+            alertError("The name cannot be empty");
+        }else if (lastName===""){
+            bool = false;
+            alertError("The last name cannot be empty");
+        }else if (password===""){
+            bool = false;
+            alertError("The password cannot be empty");
+        }else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))){
+            bool = false;
+            alertError("Enter a valid email");
+        }
+        return bool;
     }
 
     function createUser(){
-
         var email = document.getElementById("email").value;
         var firstName = document.getElementById("name_signup").value;
         var lastName = document.getElementById("last_name").value;
@@ -55,7 +45,6 @@ var ModuleSignup = (function () {
             console.log(user);
             apiclient.postUser(user).then(function (){
                 console.log("post succesful");
-
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -64,28 +53,23 @@ var ModuleSignup = (function () {
                     width: 300,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        toast.addEventListener("mouseenter", Swal.stopTimer);
+                        toast.addEventListener("mouseleave", Swal.resumeTimer);
                     }
                 })
-
                 Toast.fire({
-                    icon: 'success',
-                    title: 'Signed in successfully'
+                    icon: "success",
+                    title: "Signed in successfully"
                 })
 
             }).catch(e => {
-                console.log("error post")
+                console.log("error post");
             })
         }
-
-
     };
 
-
     return {
-        createUser,createUser
-
+        createUser:createUser
     };
 
 })();

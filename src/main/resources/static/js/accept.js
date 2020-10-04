@@ -7,7 +7,7 @@ function select_All(){
 }
  */
 
-$('#btn').on('click', function() {
-    console.log($('#select_students').val());
+$("#btn").on("click", function() {
+    console.log($("#select_students").val());
 });
 

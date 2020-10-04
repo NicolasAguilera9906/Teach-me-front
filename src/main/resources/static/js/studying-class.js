@@ -1,10 +1,4 @@
-ModuleStudyingClass = (function () {
-
-    function getClass(){
-        var token = localStorage.getItem('Authorization');
-        var class_id = localStorage.getItem('studying_class_id');
-        apiclient.getClassById(class_id,_write,token);
-    }
+var ModuleStudyingClass = (function () {
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -18,6 +12,13 @@ ModuleStudyingClass = (function () {
         $("#date_of_init").append(formatDate(data.dateOfInit));
         $("#date_of_end").append(formatDate(data.dateOfEnd));
     }
+
+    function getClass(){
+        var token = localStorage.getItem("Authorization");
+        var class_id = localStorage.getItem("studying_class_id");
+        apiclient.getClassById(class_id,_write,token);
+    }
+
     return {
         getClass:getClass
     };

@@ -1,8 +1,8 @@
 
 
 $("#datetimepicker_create").datetimepicker({
-    language: 'en',
-    format: 'YYYY-MM-DD HH:mm:ss',
+    language: "en",
+    format: "YYYY-MM-DD HH:mm:ss",
 
 });
 
@@ -47,21 +47,17 @@ var ModuleCreate = (function () {
             "dateOfInit": datastring,
             "dateOfEnd": datastring1
             };
-        apiclient.postClass(localStorage.getItem('username'),clase,localStorage.getItem('Authorization')).then(function (){
+        apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization")).then(function (){
             console.log("post succesful");
             Swal.fire({
-                icon: 'success',
-                title: 'Yeah!',
-                text: 'Class created'
-            })
+                icon: "success",
+                title: "Yeah!",
+                text: "Class created"
             });
-        };
-
-
-
+        });
+    }
 
     return {
         createClass: createClass
-
     };
 })();

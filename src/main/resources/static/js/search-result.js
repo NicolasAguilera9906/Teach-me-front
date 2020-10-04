@@ -1,18 +1,12 @@
 
 var Modulesearch = (function () {
 
-/**
+    /*
     function hola(){
         //alert("hola "+localStorage.getItem("name"));
         $("#pid").text(localStorage.getItem("name"))
     }
- */
-
-
-
-    function getClasses(){
-        apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem('Authorization'));
-    }
+    */
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -28,13 +22,12 @@ var Modulesearch = (function () {
                 fechaInicio:formatDate(clase.dateOfInit),
                 fechaFin:formatDate(clase.dateOfEnd),
                 capacity:clase.capacity
-
-            }
-        })
+            };
+        });
     }
 
     function _table(classes){
-        functions = _map(classes);
+        var functions = _map(classes);
         $("#table_class > tbody").empty();
         functions.map(function(c){
             $("#table_class > tbody").append(
@@ -44,10 +37,13 @@ var Modulesearch = (function () {
                 "<td>" + c.fechaInicio + "</td>"+
                 "<td>" + c.fechaFin + "</td>"+
                 "<td>" + c.capacity + "</td>"+
-
                 "</tr>"
             );
         });
+    }
+
+    function getClasses(){
+        apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
     }
 
     return {
