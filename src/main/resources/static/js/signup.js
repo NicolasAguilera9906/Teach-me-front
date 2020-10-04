@@ -5,45 +5,35 @@ var ModuleSignup = (function () {
 
         if (firstName=="") {
             bool = false;
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'The name cannot be empty'
-            })
+            alertError('The name cannot be empty');
         }
 
         else if (lastName==""){
             bool = false;
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'The last name cannot be empty'
-            })
+            alertError('The last name cannot be empty');
         }
 
         else if (password==""){
             bool = false;
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'The password cannot be empty'
-            })
+            alertError('The password cannot be empty');
         }
 
         else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))){
             bool = false;
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                text: 'Enter a valid email'
-            })
+            alertError('Enter a valid email');
         }
 
         return bool;
 
     }
 
-
+    function alertError(message){
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: message
+        })
+    }
 
     function createUser(){
 

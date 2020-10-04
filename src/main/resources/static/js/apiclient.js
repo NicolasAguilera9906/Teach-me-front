@@ -1,5 +1,6 @@
 apiclient = (function () {
 
+    //"http://localhost:8080"
     const url = "https://teache-me-front.herokuapp.com"
 
     function postClass(userEmail,clase,token){
