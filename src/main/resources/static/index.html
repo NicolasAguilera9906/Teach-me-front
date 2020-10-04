@@ -124,13 +124,13 @@
 <script>
     $(document).ready(function(){
         Moduleindex.getTeachingClasses();
-        Moduleindex.getStudyingClasses();
         $('#teaching_classes').on('change',function(){
             $(this).find("option:selected").each(function(){
                 localStorage.setItem("class_id",$(this).attr("value"));
                 window.location.href="teachclass.html";
             });
         });
+        Moduleindex.getStudyingClasses();
         $('#studying_classes').on('change',function(){
             $(this).find("option:selected").each(function(){
                 localStorage.setItem("studying_class_id",$(this).attr("value"));

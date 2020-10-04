@@ -42,7 +42,7 @@ var Moduleindex = (function () {
 
     return {
         setName:setName,
+        getStudyingClasses:getStudyingClasses,
         getTeachingClasses:getTeachingClasses,
-        getStudyingClasses:getStudyingClasses
     };
 })();
