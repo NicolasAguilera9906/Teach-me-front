@@ -56,6 +56,17 @@ apiclient = (function () {
         return data;
     }
 
+    function getStudyingClasses(email,callback,token){
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/",
+            type: 'GET',
+            headers: {"Authorization": token},
+            success : function (data, text) {
+                callback(data);
+            }});
+        return data;
+    }
+
     function getClassById(class_id,callback,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes/"+class_id,
@@ -98,7 +109,8 @@ apiclient = (function () {
         validatePage:validatePage,
         getTeachingClasses:getTeachingClasses,
         getClassById:getClassById,
-        getRequest:getRequest
+        getRequest:getRequest,
+        getStudyingClasses:getStudyingClasses
     };
 
 })();
