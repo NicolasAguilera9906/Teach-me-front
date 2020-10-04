@@ -1,8 +1,5 @@
 var ModuleAccept = (function () {
 
-    function show(data){
-        console.log(data);
-    }
 
     function _map(list){
         return mapList = list.map(function(request){
@@ -15,11 +12,9 @@ var ModuleAccept = (function () {
     }
 
     function _table(requests){
-        console.log(requests);
-        var functions = _map(requests);
+        var list_request = _map(requests);
         $("#table_students > tbody").empty();
-        functions.map(function(c){
-            console.log(c);
+        list_request.map(function(c){
             $("#table_students > tbody").append(
                 "<tr onclick='console.log(\" hola \")' class='hoverRow'>" +
                 "<td>" + c.nombre + "</td>"+

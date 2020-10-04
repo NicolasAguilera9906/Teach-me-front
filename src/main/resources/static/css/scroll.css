@@ -10,3 +10,7 @@
 .hoverRow:hover {
     background-color: #838080 !important;
 }
+
+.dropdown-menu {
+    max-height: 100px;
+}

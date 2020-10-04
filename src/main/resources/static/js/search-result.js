@@ -1,12 +1,6 @@
 
 var Modulesearch = (function () {
 
-    /*
-    function hola(){
-        //alert("hola "+localStorage.getItem("name"));
-        $("#pid").text(localStorage.getItem("name"))
-    }
-    */
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -28,16 +22,14 @@ var Modulesearch = (function () {
     }
 
     function _table(classes){
-        var functions = _map(classes);
+        var list_classes = _map(classes);
         $("#table_class > tbody").empty();
-        functions.map(function(c){
+        list_classes.map(function(c){
             var onclick = "Modulesearch.getInfo(\""+c.id+"\")";
-            console.log(onclick);
             var stri="'"+onclick+"'";
-            console.log(stri);
             $("#table_class > tbody").append(
-                "<tr onclick="+stri+">" +
-                "<td>" +"<a>"+ c.nombre+"</a>" + "</td>"+
+                "<tr onclick="+stri+" class='hoverRow' >" +
+                "<td>" + c.nombre+ "</td>"+
                 "<td>" + c.description + "</td>"+
                 "<td>" + c.fechaInicio + "</td>"+
                 "<td>" + c.fechaFin + "</td>"+
@@ -48,7 +40,6 @@ var Modulesearch = (function () {
     }
 
     function getInfo(id){
-        console.log(id);
         localStorage.setItem("studying_class_id",id);
         window.location.href="selectclass.html";
     }

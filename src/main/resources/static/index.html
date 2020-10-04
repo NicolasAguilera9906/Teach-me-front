@@ -12,6 +12,8 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="css/scroll.css">
+
     <script type="text/javascript" src="js/teaching-class.js"></script>
     <script type="text/javascript" src="js/studying-class.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
@@ -104,9 +106,18 @@
 
                         <div class="col" >
 
-                            <select id="teaching_classes"  class="selectpicker"  title='Choose the class' data-width="50%" data-selected-text-format="count>2"  data-live-search="true">
+                            <select id="teaching_classes"  class="selectpicker"  title='Choose the class' data-width="50%" data-selected-text-format="count>2"  data-live-search="true" style="max-height: 10px">
                             </select>
 
+                        </div>
+
+
+                    </div>
+
+                    <div class="row">
+
+                        <div class="col" style="text-align: center">
+                            <button type="button" class="btn btn-primary" onclick="window.location.href='createclass.html'">Create class</button>
                         </div>
                     </div>
 
