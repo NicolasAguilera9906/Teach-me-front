@@ -21,7 +21,8 @@ var Modulesearch = (function () {
                 description:clase.description,
                 fechaInicio:formatDate(clase.dateOfInit),
                 fechaFin:formatDate(clase.dateOfEnd),
-                capacity:clase.capacity
+                capacity:clase.capacity,
+                id:clase.id
             };
         });
     }
@@ -30,9 +31,13 @@ var Modulesearch = (function () {
         var functions = _map(classes);
         $("#table_class > tbody").empty();
         functions.map(function(c){
+            var onclick = "Modulesearch.getInfo(\""+c.id+"\")";
+            console.log(onclick);
+            var stri="'"+onclick+"'";
+            console.log(stri);
             $("#table_class > tbody").append(
-                "<tr>" +
-                "<td>" +"<a href='#'>"+ c.nombre+"</a>" + "</td>"+
+                "<tr onclick="+stri+">" +
+                "<td>" +"<a>"+ c.nombre+"</a>" + "</td>"+
                 "<td>" + c.description + "</td>"+
                 "<td>" + c.fechaInicio + "</td>"+
                 "<td>" + c.fechaFin + "</td>"+
@@ -42,12 +47,19 @@ var Modulesearch = (function () {
         });
     }
 
+    function getInfo(id){
+        console.log(id);
+        localStorage.setItem("studying_class_id",id);
+        window.location.href="selectclass.html";
+    }
+
     function getClasses(){
         apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
     }
 
     return {
-        getClasses:getClasses
+        getClasses:getClasses,
+        getInfo:getInfo
     };
 })();
 
