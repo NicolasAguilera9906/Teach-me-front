@@ -102,6 +102,18 @@ var apiclient = (function () {
         return data;
     }
 
+    function putRequest(email,classId,request,token) {
+        console.log(request);
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
+            type: 'PUT',
+            data: JSON.stringify(request),
+            contentType: "application/json",
+            headers: {"Authorization": token}
+        });
+        return data;
+    }
+
     return {
         postClass:postClass,
         getClassByName:getClassByName,
@@ -111,7 +123,8 @@ var apiclient = (function () {
         getTeachingClasses:getTeachingClasses,
         getClassById:getClassById,
         getRequest:getRequest,
-        getStudyingClasses:getStudyingClasses
+        getStudyingClasses:getStudyingClasses,
+        putRequest:putRequest
     };
 
 })();
