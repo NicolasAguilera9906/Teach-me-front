@@ -42,7 +42,7 @@ var ModuleAccept = (function () {
 
                 });
             }
-        })
+        });
     }
 
     function _table(requests){
