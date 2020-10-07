@@ -58,11 +58,15 @@ var apiclient = (function () {
     }
 
     function getUser(email,token){
-        return $.ajax({
+        var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email,
             type: 'GET',
-            headers: {"Authorization": token}
+            headers: {"Authorization": token},
+            success : function (data, text) {
+                //callback(data);
+            }});
         });
+        return data;
     }
 
     function getStudyingClasses(email,callback,token){
