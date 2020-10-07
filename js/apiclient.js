@@ -61,10 +61,7 @@ var apiclient = (function () {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email,
             type: 'GET',
-            headers: {"Authorization": token},
-            success : function (data, text) {
-                //callback(data);
-            }});
+            headers: {"Authorization": token}
         });
         return data;
     }
