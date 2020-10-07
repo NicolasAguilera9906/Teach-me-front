@@ -57,6 +57,15 @@ var apiclient = (function () {
         return data;
     }
 
+    function getUser(email,token){
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email,
+            type: 'GET',
+            headers: {"Authorization": token}
+        });
+        return data;
+    }
+
     function getStudyingClasses(email,callback,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/",
@@ -91,14 +100,30 @@ var apiclient = (function () {
         return data;
     }
 
-    function getRequest(email,classId,callback, token) {
+    function getRequestsOfAClass(email,classId,callback, token) {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
             type: 'GET',
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
-            }});
+            },
+        });
+        return data;
+    }
+
+    function getRequest(userId,classId,callback,token) {
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/requests/"+classId+"/"+userId,
+            type: 'GET',
+            headers: {"Authorization": token},
+            success : function (data, text) {
+                callback(null,data);
+            },
+            error: function (request, status, error) {
+                callback(error,data);
+            }
+        });
         return data;
     }
 
@@ -114,6 +139,18 @@ var apiclient = (function () {
         return data;
     }
 
+    function postRequest(email,classId,request,token) {
+        console.log(request);
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
+            type: 'POST',
+            data: JSON.stringify(request),
+            contentType: "application/json",
+            headers: {"Authorization": token},
+        });
+        return data;
+    }
+
     return {
         postClass:postClass,
         getClassByName:getClassByName,
@@ -122,9 +159,12 @@ var apiclient = (function () {
         validatePage:validatePage,
         getTeachingClasses:getTeachingClasses,
         getClassById:getClassById,
+        getRequestsOfAClass:getRequestsOfAClass,
         getRequest:getRequest,
         getStudyingClasses:getStudyingClasses,
-        putRequest:putRequest
+        putRequest:putRequest,
+        getUser:getUser,
+        postRequest:postRequest
     };
 
 })();

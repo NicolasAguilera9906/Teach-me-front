@@ -38,7 +38,7 @@ var ModuleAccept = (function () {
                 };
                 apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization")).then(function (){
                     console.log("put succesful");
-                    apiclient.getRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                    apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
                 });
             }
@@ -64,7 +64,7 @@ var ModuleAccept = (function () {
 
     function getStudents(){
         var class_id = localStorage.getItem("class_id");
-        apiclient.getRequest(localStorage.getItem("username"),class_id,_table,localStorage.getItem("Authorization"));
+        apiclient.getRequestsOfAClass(localStorage.getItem("username"),class_id,_table,localStorage.getItem("Authorization"));
     }
 
     return {
