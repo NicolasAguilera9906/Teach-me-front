@@ -23,20 +23,23 @@ var Modulesearch = (function () {
 
     function _table(classes){
         var list_classes = _map(classes);
-        $("#table_class > tbody").empty();
-        list_classes.map(function(c){
-            var onclick = "Modulesearch.getInfo(\""+c.id+"\")";
-            var stri="'"+onclick+"'";
-            $("#table_class > tbody").append(
-                "<tr onclick="+stri+" class='hoverRow' >" +
-                "<td>" + c.nombre+ "</td>"+
-                "<td>" + c.description + "</td>"+
-                "<td>" + c.fechaInicio + "</td>"+
-                "<td>" + c.fechaFin + "</td>"+
-                "<td>" + c.capacity + "</td>"+
-                "</tr>"
-            );
-        });
+        if (list_classes.length==0)
+            document.getElementById("table_footer").innerHTML = "No se encontraron clases";
+        else
+            $("#table_class > tbody").empty();
+            list_classes.map(function(c){
+                var onclick = "Modulesearch.getInfo(\""+c.id+"\")";
+                var stri="'"+onclick+"'";
+                $("#table_class > tbody").append(
+                    "<tr onclick="+stri+" class='hoverRow' >" +
+                    "<td>" + c.nombre+ "</td>"+
+                    "<td>" + c.description + "</td>"+
+                    "<td>" + c.fechaInicio + "</td>"+
+                    "<td>" + c.fechaFin + "</td>"+
+                    "<td>" + c.capacity + "</td>"+
+                    "</tr>"
+                );
+            });
     }
 
     function getInfo(id){

@@ -1,6 +1,7 @@
 var validator = (function () {
 
-
+    //http://localhost:8080
+    //https://teache-me-front.herokuapp.com
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function redirect(message){

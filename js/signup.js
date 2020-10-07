@@ -63,7 +63,12 @@ var ModuleSignup = (function () {
                 })
 
             }).catch(e => {
-                console.log("error post");
+                console.log(e);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: "Ya existe un usario con dicho correo"
+                })
             })
         }
     };

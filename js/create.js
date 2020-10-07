@@ -24,7 +24,6 @@ var ModuleCreate = (function () {
         var data = document.getElementById(element).value;
         var datasplit=data.split(" ");
         var datastring=datasplit.join("T");
-        console.log(datastring);
         return datastring;
 
     }
@@ -47,14 +46,21 @@ var ModuleCreate = (function () {
             "dateOfInit": datastring,
             "dateOfEnd": datastring1
             };
-        apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization")).then(function (){
-            console.log("post succesful");
-            Swal.fire({
-                icon: "success",
-                title: "Yeah!",
-                text: "Class created"
-            });
-        });
+        apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization"))
+            .then(function (){
+                console.log("post succesful");
+                Swal.fire({
+                    icon: "success",
+                    title: "Yeah!",
+                    text: "Class created"
+                });
+            }).catch(e => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: e.responseText
+                    })
+                });
     }
 
     return {

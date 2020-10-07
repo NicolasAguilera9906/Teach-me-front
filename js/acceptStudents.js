@@ -36,11 +36,12 @@ var ModuleAccept = (function () {
                     },
                     "accepted":true
                 };
-                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization")).then(function (){
-                    console.log("put succesful");
-                    apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                    .then(function (){
+                        console.log("put succesful");
+                        apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
-                });
+                    });
             }
         });
     }
