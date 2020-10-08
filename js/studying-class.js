@@ -49,24 +49,22 @@ var ModuleStudyingClass = (function () {
     }
 
     function showRequestStatus(){
-        verifyRequestStatus().then(function(){
-            var _status;
-            if(status==null){
-                _status="Not answered yet";
-            }
-            if(status==true){
-                _status="Accepted";
-            }
-            if(status==false){
-                _status="Rejected";
-            }
+        var _status;
+        if(status==null){
+            _status="Not answered yet";
+        }
+        if(status==true){
+            _status="Accepted";
+        }
+        if(status==false){
+            _status="Rejected";
+        }
 
-            Swal.fire({
-                position : 'center',
-                title: 'The status of your request is',
-                text: _status,
-            })
-        });
+        Swal.fire({
+            position : 'center',
+            title: 'The status of your request is',
+            text: _status,
+          })
     }
 
     function verifyRequestStatus(){
