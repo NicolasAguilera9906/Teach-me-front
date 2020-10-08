@@ -4,7 +4,7 @@ var validator = (function () {
     //https://teache-me-front.herokuapp.com
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
-    function redirect(message){
+    function redirect(){
         location.href = urlAPI+"/authenticate.html";
     }
 

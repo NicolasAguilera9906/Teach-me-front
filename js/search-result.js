@@ -22,12 +22,13 @@ var Modulesearch = (function () {
     }
 
     function _table(classes){
-        var list_classes = _map(classes);
-        if (list_classes.length==0)
+        var listClasses = _map(classes);
+        if (listClasses.length===0) {
             document.getElementById("table_footer").innerHTML = "No se encontraron clases";
+        }
         else
             $("#table_class > tbody").empty();
-            list_classes.map(function(c){
+            listClasses.map(function(c){
                 var onclick = "Modulesearch.getInfo(\""+c.id+"\")";
                 var stri="'"+onclick+"'";
                 $("#table_class > tbody").append(

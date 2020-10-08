@@ -17,7 +17,7 @@ var apiclient = (function () {
     function postUser(user){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users",
-            type: 'POST',
+            type: "POST",
             data: JSON.stringify(user),
             contentType: "application/json"
         });
@@ -49,7 +49,7 @@ var apiclient = (function () {
     function getTeachingClasses(email,callback,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/teachingClasses",
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
@@ -60,7 +60,7 @@ var apiclient = (function () {
     function getUser(email,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email,
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token}
         });
         return data;
@@ -69,7 +69,7 @@ var apiclient = (function () {
     function getStudyingClasses(email,callback,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/",
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
@@ -80,7 +80,7 @@ var apiclient = (function () {
     function getClassById(classId,callback,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes/"+classId,
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
@@ -92,7 +92,7 @@ var apiclient = (function () {
     function getClassByName(className, callback , token) {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes?name="+className,
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
@@ -103,11 +103,18 @@ var apiclient = (function () {
     function getRequestsOfAClass(email,classId,callback, token) {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
             },
+            error: function (request){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: request.responseText
+                });
+            }
         });
         return data;
     }
@@ -115,7 +122,7 @@ var apiclient = (function () {
     function getRequest(userId,classId,callback,token) {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/requests/"+classId+"/"+userId,
-            type: 'GET',
+            type: "GET",
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(null,data);
@@ -128,10 +135,9 @@ var apiclient = (function () {
     }
 
     function putRequest(email,classId,request,token) {
-        console.log(request);
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
-            type: 'PUT',
+            type: "PUT",
             data: JSON.stringify(request),
             contentType: "application/json",
             headers: {"Authorization": token}
@@ -143,7 +149,7 @@ var apiclient = (function () {
         console.log(request);
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
-            type: 'POST',
+            type: "POST",
             data: JSON.stringify(request),
             contentType: "application/json",
             headers: {"Authorization": token},

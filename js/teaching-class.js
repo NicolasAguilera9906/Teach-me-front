@@ -7,7 +7,6 @@ var ModuleTeachingClasse = (function () {
     }
 
     function _write(data){
-        console.log(data);
         $("#class_name").append(data.nombre);
         $("#description_class").append(data.description);
         $("#date_of_init").append(formatDate(data.dateOfInit));

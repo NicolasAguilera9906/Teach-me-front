@@ -42,12 +42,10 @@ var ModuleSignup = (function () {
                 "password": password,
                 "description": description
             };
-            console.log(user);
             apiclient.postUser(user).then(function (){
-                console.log("post succesful");
                 const Toast = Swal.mixin({
                     toast: true,
-                    position: 'top-end',
+                    position: "top-end",
                     showConfirmButton: false,
                     timer: 3000,
                     width: 300,
@@ -60,10 +58,9 @@ var ModuleSignup = (function () {
                 Toast.fire({
                     icon: "success",
                     title: "Signed in successfully"
-                })
+                });
 
-            }).catch(e => {
-                console.log(e);
+            }).catch((e) => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
@@ -71,7 +68,7 @@ var ModuleSignup = (function () {
                 })
             })
         }
-    };
+    }
 
     return {
         createUser:createUser

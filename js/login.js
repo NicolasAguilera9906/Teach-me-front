@@ -15,13 +15,13 @@ var login = (function () {
                 localStorage.setItem("Authorization",token);
                 localStorage.setItem("username",email);
                 location.href = urlAPI+"/index.html";
-            }).catch(e=>{
+            }).catch( (e) => {
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
+                    icon: "error",
+                    title: "Oops...",
                     text: "Usuario o contraseña incorrectos"
-                })
-        })
+                });
+        });
     }
     return {
         doLogin:doLogin

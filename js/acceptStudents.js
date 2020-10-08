@@ -17,16 +17,37 @@ var ModuleAccept = (function () {
         _selectedId=id;
     }
 
+    function _table(requests){
+        var listRequest = _map(requests);
+        console.log(listRequest);
+        $("#table_students > tbody").empty();
+        if (listRequest.length===0) {
+            document.getElementById("table_footer").innerHTML = "No se encontraron estudiantes";
+        }
+        else
+            listRequest.map(function(c){
+                var onclick = "ModuleAccept.acceptStudent(\""+c.idStudentd+"\")";
+                var stri="'"+onclick+"'";
+                $("#table_students > tbody").append(
+                    "<tr onclick="+stri+" class='hoverRow' >" +
+                    "<td>" + c.nombre + "</td>"+
+                    "<td>" + c.apellido + "</td>"+
+                    "<td>" + c.correo + "</td>"+
+                    "</tr>"
+                );
+            });
+    }
+
     function acceptStudent(id){
         setSelectedId(id);
         Swal.fire({
-            title: 'You want accept this student?',
+            title: "You want accept this student?",
             text: "You won't be able to revert this!",
-            icon: 'warning',
+            icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, accept!'
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, accept!"
         }).then((result) => {
             if (result.isConfirmed) {
                 var request={
@@ -38,7 +59,6 @@ var ModuleAccept = (function () {
                 };
                 apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
                     .then(function (){
-                        console.log("put succesful");
                         apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
                     });
@@ -46,26 +66,11 @@ var ModuleAccept = (function () {
         });
     }
 
-    function _table(requests){
-        console.log(requests);
-        var list_request = _map(requests);
-        $("#table_students > tbody").empty();
-        list_request.map(function(c){
-            var onclick = "ModuleAccept.acceptStudent(\""+c.idStudentd+"\")";
-            var stri="'"+onclick+"'";
-            $("#table_students > tbody").append(
-                "<tr onclick="+stri+" class='hoverRow' >" +
-                "<td>" + c.nombre + "</td>"+
-                "<td>" + c.apellido + "</td>"+
-                "<td>" + c.correo + "</td>"+
-                "</tr>"
-            );
-        });
-    }
+
 
     function getStudents(){
-        var class_id = localStorage.getItem("class_id");
-        apiclient.getRequestsOfAClass(localStorage.getItem("username"),class_id,_table,localStorage.getItem("Authorization"));
+        var classId = localStorage.getItem("class_id");
+        apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
     }
 
     return {

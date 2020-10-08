@@ -7,7 +7,6 @@ var Moduleindex = (function () {
     }
 
     function _selectteachingclasses(data){
-        console.log(data);
         var $select = $("#teaching_classes").selectpicker();
         for (var i = 0; i < data.length; i++) {
             var o = new Option(data[i].nombre,data[i].id);

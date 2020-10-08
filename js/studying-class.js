@@ -28,23 +28,23 @@ var ModuleStudyingClass = (function () {
             };
             apiclient.postRequest(email,classId,request,token).then(function(){
                 Swal.fire({
-                    position: 'center',
-                    icon: 'success',
-                    title: 'Your request has been sended',
+                    position: "center",
+                    icon: "success",
+                    title: "Your request has been sended",
                     showConfirmButton: false,
                     timer: 1500
-                })
+                });
                 verifyRequestStatus();
             })
             
         })
-    };
+    }
 
     function changeButtons(err,data){
         if(err==null){
             status = data.accepted;
-            document.getElementById('inscribe_me').setAttribute('onclick', "ModuleStudyingClass.showRequestStatus()");
-            document.getElementById('inscribe_me').innerText = 'View Request Status';
+            document.getElementById("inscribe_me").setAttribute("onclick", "ModuleStudyingClass.showRequestStatus()");
+            document.getElementById("inscribe_me").innerText = "View Request Status";
         }
     }
 
@@ -53,16 +53,16 @@ var ModuleStudyingClass = (function () {
         if(status==null){
             _status="Not answered yet";
         }
-        if(status==true){
+        if(status===true){
             _status="Accepted";
         }
-        if(status==false){
+        if(status===false){
             _status="Rejected";
         }
 
         Swal.fire({
-            position : 'center',
-            title: 'The status of your request is',
+            position : "center",
+            title: "The status of your request is",
             text: _status,
           })
     }
@@ -78,8 +78,8 @@ var ModuleStudyingClass = (function () {
 
     function getClass(){
         var token = localStorage.getItem("Authorization");
-        var class_id = localStorage.getItem("studying_class_id");
-        apiclient.getClassById(class_id,_write,token);
+        var classId = localStorage.getItem("studying_class_id");
+        apiclient.getClassById(classId,_write,token);
     }
 
     return {
