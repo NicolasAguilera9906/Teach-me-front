@@ -43,28 +43,30 @@ var ModuleStudyingClass = (function () {
     function changeButtons(err,data){
         if(err==null){
             status = data.accepted;
-            document.getElementById('inscribe_me').setAttribute('onclick', "ModuleStudyingClass.verifyRequestStatus()");
+            document.getElementById('inscribe_me').setAttribute('onclick', "ModuleStudyingClass.showRequestStatus()");
             document.getElementById('inscribe_me').innerText = 'View Request Status';
         }
     }
 
     function showRequestStatus(){
-        var _status;
-        if(status==null){
-            _status="Not answered yet";
-        }
-        if(status==true){
-            _status="Accepted";
-        }
-        if(status==false){
-            _status="Rejected";
-        }
+        verifyRequestStatus().then(function(){
+            var _status;
+            if(status==null){
+                _status="Not answered yet";
+            }
+            if(status==true){
+                _status="Accepted";
+            }
+            if(status==false){
+                _status="Rejected";
+            }
 
-        Swal.fire({
-            position : 'center',
-            title: 'The status of your request is',
-            text: _status,
-          })
+            Swal.fire({
+                position : 'center',
+                title: 'The status of your request is',
+                text: _status,
+            })
+        });
     }
 
     function verifyRequestStatus(){
