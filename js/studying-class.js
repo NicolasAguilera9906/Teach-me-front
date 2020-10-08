@@ -43,7 +43,7 @@ var ModuleStudyingClass = (function () {
     function changeButtons(err,data){
         if(err==null){
             status = data.accepted;
-            document.getElementById('inscribe_me').setAttribute('onclick', "ModuleStudyingClass.showRequestStatus()");
+            document.getElementById('inscribe_me').setAttribute('onclick', "ModuleStudyingClass.verifyRequestStatus()");
             document.getElementById('inscribe_me').innerText = 'View Request Status';
         }
     }
