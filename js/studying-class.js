@@ -1,5 +1,3 @@
-
-
 var ModuleStudyingClass = (function () {
 
     var status = null;
