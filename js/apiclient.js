@@ -9,7 +9,7 @@ var apiclient = (function () {
             type: "POST",
             data: JSON.stringify(clase),
             contentType: "application/json",
-            headers: {"Authorization": token , "x-userEmail" : email}
+            headers: {"Authorization": token , "x-userEmail" : userEmail}
         });
         return data;
     }
