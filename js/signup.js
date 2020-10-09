@@ -8,6 +8,8 @@ var ModuleSignup = (function () {
         });
     }
 
+    /*eslint complexity: ["error", 5]*/
+
     function validate(email,firstName,lastName,password){
         var bool = true;
         if (firstName==="") {
