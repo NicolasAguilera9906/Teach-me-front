@@ -47,7 +47,8 @@ var ModuleAccept = (function () {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, accept!"
+            confirmButtonText: "Yes, accept!",
+            cancelButtonText: 'Dont accept'
         }).then((result) => {
             if (result.isConfirmed) {
                 var request={
@@ -56,6 +57,20 @@ var ModuleAccept = (function () {
                         "clase":localStorage.getItem("class_id")
                     },
                     "accepted":true
+                };
+                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                    .then(function (){
+                        apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+
+                    });
+            }
+            else if (result.dismiss === Swal.DismissReason.cancel){
+                var request={
+                    "requestId":{
+                        "student":_selectedId,
+                        "clase":localStorage.getItem("class_id")
+                    },
+                    "accepted":false
                 };
                 apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
                     .then(function (){
