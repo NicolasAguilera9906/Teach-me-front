@@ -2,7 +2,6 @@ var ModuleAccept = (function () {
 
     var _selectedId;
     var _apiclient=apiclient;
-    var _Swal =Swal;
 
     function _map(list){
         var mapList=null;
@@ -43,7 +42,7 @@ var ModuleAccept = (function () {
 
     function acceptStudent(id){
         setSelectedId(id);
-        _Swal.fire({
+        Swal.fire({
             title: "You want accept this student?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -68,7 +67,7 @@ var ModuleAccept = (function () {
 
                     });
             }
-            else if (result.dismiss === _Swal.DismissReason.cancel){
+            else if (result.dismiss === Swal.DismissReason.cancel){
                 request={
                     "requestId":{
                         "student":_selectedId,

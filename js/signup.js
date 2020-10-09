@@ -1,10 +1,9 @@
 var ModuleSignup = (function () {
 
-    var _Swal = Swal;
     var _apiclient=apiclient;
 
     function alertError(message){
-        _Swal.fire({
+        Swal.fire({
             icon: "error",
             title: "Oops...",
             text: message
@@ -48,7 +47,7 @@ var ModuleSignup = (function () {
                 "description": description
             };
             _apiclient.postUser(user).then(function (){
-                const Toast = _Swal.mixin({
+                const Toast = Swal.mixin({
                     toast: true,
                     position: "top-end",
                     showConfirmButton: false,
@@ -56,8 +55,8 @@ var ModuleSignup = (function () {
                     width: 300,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                        toast.addEventListener("mouseenter", _Swal.stopTimer);
-                        toast.addEventListener("mouseleave", _Swal.resumeTimer);
+                        toast.addEventListener("mouseenter", Swal.stopTimer);
+                        toast.addEventListener("mouseleave", Swal.resumeTimer);
                     }
                 });
                 Toast.fire({
@@ -66,7 +65,7 @@ var ModuleSignup = (function () {
                 });
 
             }).catch((e) => {
-                _Swal.fire({
+                Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Ya existe un usario con dicho correo"

@@ -5,7 +5,6 @@ var login = (function () {
     // https://teache-me-front.herokuapp.com
     // nicolas : file:///C:/Users/nicol/Desktop/
 
-    var _Swal=Swal;
     var _apiclient=apiclient;
 
     const urlAPI = "https://teache-me-front.herokuapp.com";
@@ -21,7 +20,7 @@ var login = (function () {
                 localStorage.setItem("username",email);
                 location.href = urlAPI+"/index.html";
             }).catch( (e) => {
-                _Swal.fire({
+                Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Usuario o contraseña incorrectos"

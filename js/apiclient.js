@@ -3,7 +3,6 @@ var apiclient = (function () {
     //"http://localhost:8080"
     const url = "https://teache-me-front.herokuapp.com";
 
-    var _Swal=Swal;
 
     function postClass(userEmail,clase,token){
         var data = $.ajax({
@@ -121,7 +120,7 @@ var apiclient = (function () {
                 callback(data);
             },
             error: function (request){
-                _Swal.fire({
+                Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: request.responseText

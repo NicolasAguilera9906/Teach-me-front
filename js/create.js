@@ -20,7 +20,6 @@ $("#datetimepicker_create1").datetimepicker();
 
 var ModuleCreate = (function () {
 
-    var _Swal = Swal;
     var _apiclient=apiclient;
 
     function formatDate(element){
@@ -49,13 +48,13 @@ var ModuleCreate = (function () {
             };
         _apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization"))
             .then(function (){
-                _Swal.fire({
+                Swal.fire({
                     icon: "success",
                     title: "Yeah!",
                     text: "Class created"
                 });
             }).catch((e) => {
-                _Swal.fire({
+                Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: e.responseText
