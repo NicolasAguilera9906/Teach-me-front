@@ -5,11 +5,11 @@ var apiclient = (function () {
 
     function postClass(userEmail,clase,token){
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/api/v1/users/"+userEmail+"/classes",
+            url: "https://teach2-me.herokuapp.com/api/v1/classes",
             type: "POST",
             data: JSON.stringify(clase),
             contentType: "application/json",
-            headers: {"Authorization": token}
+            headers: {"Authorization": token , "x-userEmail" : email}
         });
         return data;
     }
@@ -48,9 +48,9 @@ var apiclient = (function () {
 
     function getTeachingClasses(email,callback,token){
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/teachingClasses",
+            url: "https://teach2-me.herokuapp.com/api/v1/teachingClasses",
             type: "GET",
-            headers: {"Authorization": token},
+            headers: {"Authorization": token , "x-userEmail" : email},
             success : function (data, text) {
                 callback(data);
             }});
@@ -68,9 +68,9 @@ var apiclient = (function () {
 
     function getStudyingClasses(email,callback,token){
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/",
+            url: "https://teach2-me.herokuapp.com/api/v1/studyingClasses/",
             type: "GET",
-            headers: {"Authorization": token},
+            headers: {"Authorization": token,  "x-userEmail" : email},
             success : function (data, text) {
                 callback(data);
             }});
@@ -102,9 +102,9 @@ var apiclient = (function () {
 
     function getRequestsOfAClass(email,classId,callback, token) {
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
+            url: "https://teach2-me.herokuapp.com/api/v1/classes/"+classId+"/requests",
             type: "GET",
-            headers: {"Authorization": token},
+            headers: {"Authorization": token , "x-userEmail" : email},
             success : function (data, text) {
                 callback(data);
             },
@@ -136,11 +136,11 @@ var apiclient = (function () {
 
     function putRequest(email,classId,request,token) {
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
+            url: "https://teach2-me.herokuapp.com/api/v1/classes/"+classId+"/requests",
             type: "PUT",
             data: JSON.stringify(request),
             contentType: "application/json",
-            headers: {"Authorization": token}
+            headers: {"Authorization": token , "x-userEmail" : email}
         });
         return data;
     }
@@ -148,11 +148,11 @@ var apiclient = (function () {
     function postRequest(email,classId,request,token) {
         console.log(request);
         var data = $.ajax({
-            url: "https://teach2-me.herokuapp.com/api/v1/users/"+email+"/classes/"+classId+"/requests",
+            url: "https://teach2-me.herokuapp.com/api/v1/classes/"+classId+"/requests",
             type: "POST",
             data: JSON.stringify(request),
             contentType: "application/json",
-            headers: {"Authorization": token},
+            headers: {"Authorization": token , "x-userEmail" : email},
         });
         return data;
     }

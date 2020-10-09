@@ -3,7 +3,7 @@ var login = (function () {
 
     //Esta se cambia por la del heroku antes de desplegar "http://localhost:8080"
     // https://teache-me-front.herokuapp.com
-    const urlAPI = "https://teache-me-front.herokuapp.com";
+    const urlAPI = "file:///C:/Users/nicol/Desktop/Teach-me-front";
 
     function doLogin() {
         var email = $("#username").val();
@@ -23,7 +23,12 @@ var login = (function () {
                 });
         });
     }
+    function doLogout(){
+        localStorage.clear();
+        window.location.href=urlAPI+"/authenticate.html"
+    }
     return {
-        doLogin:doLogin
+        doLogin:doLogin,
+        doLogout:doLogout
     };
 })();
