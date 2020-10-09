@@ -5,15 +5,17 @@ var login = (function () {
     // https://teache-me-front.herokuapp.com
     // nicolas : file:///C:/Users/nicol/Desktop/
 
-    var _apiclient=apiclient;
 
+    let apiclient = "js/apiclient.js";
+
+    
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function doLogin() {
         var email = $("#username").val();
         var passw = $("#password").val();
         var loginRequest = {username: email, password: passw};
-        _apiclient.postLogin(loginRequest)
+        apiclient.postLogin(loginRequest)
             .then(function(data, textStatus, request) {
                 var token = request.getResponseHeader("Authorization");
                 localStorage.setItem("Authorization",token);

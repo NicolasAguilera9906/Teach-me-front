@@ -1,7 +1,8 @@
 
 var Modulesearch = (function () {
 
-    var _apiclient=apiclient;
+    let apiclient = "js/apiclient.js";
+
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -52,7 +53,7 @@ var Modulesearch = (function () {
     }
 
     function getClasses(){
-        _apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
+        apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
     }
 
     return {

@@ -1,6 +1,9 @@
 "use strict";
 
 var app = (function () {
+
+    let apiclient = "js/apiclient.js";
+
     const constraints = {
         audio: true,
         video: {
@@ -30,7 +33,7 @@ var app = (function () {
     return {
         init:init
     };
-    
+
 })();
 
 

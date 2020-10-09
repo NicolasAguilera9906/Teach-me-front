@@ -1,8 +1,10 @@
 var ModuleTeachingClasse = (function () {
 
-    var _apiclient=apiclient;
 
     const urlAPI = "https://teache-me-front.herokuapp.com";
+
+    let apiclient = "js/apiclient.js";
+
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -20,14 +22,14 @@ var ModuleTeachingClasse = (function () {
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("class_id");
-        _apiclient.getClassById(classId,_write,token);
+        apiclient.getClassById(classId,_write,token);
     }
 
     function deleteClass(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("class_id");
-        _apiclient.deleteClass(email,classId,token).then(function(){
+        apiclient.deleteClass(email,classId,token).then(function(){
             Swal.fire({
                 position: "center",
                 icon: "success",

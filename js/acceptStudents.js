@@ -1,7 +1,8 @@
 var ModuleAccept = (function () {
 
     var _selectedId;
-    var _apiclient=apiclient;
+
+    let apiclient = "js/apiclient.js";
 
     function _map(list){
         var mapList=null;
@@ -61,9 +62,9 @@ var ModuleAccept = (function () {
                     },
                     "accepted":true
                 };
-                _apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
                     .then(function (){
-                        _apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                        apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
                     });
             }
@@ -75,9 +76,9 @@ var ModuleAccept = (function () {
                     },
                     "accepted":false
                 };
-                _apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
                     .then(function (){
-                        _apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                        apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
                     });
             }
@@ -88,7 +89,7 @@ var ModuleAccept = (function () {
 
     function getStudents(){
         var classId = localStorage.getItem("class_id");
-        _apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
+        apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
     }
 
     return {

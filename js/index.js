@@ -1,6 +1,6 @@
 var Moduleindex = (function () {
 
-    var _apiclient =  null;
+    let apiclient = "js/apiclient.js";
 
 
     function  setName(){
@@ -37,13 +37,13 @@ var Moduleindex = (function () {
         });
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        _apiclient.getTeachingClasses(email,_selectteachingclasses,token);
+        apiclient.getTeachingClasses(email,_selectteachingclasses,token);
     }
 
     function getStudyingClasses(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        _apiclient.getStudyingClasses(email,_selectstudyingclasses,token);
+        apiclient.getStudyingClasses(email,_selectstudyingclasses,token);
     }
 
 

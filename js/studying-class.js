@@ -1,7 +1,8 @@
 var ModuleStudyingClass = (function () {
 
+    let apiclient = "js/apiclient.js";
+
     var status = null;
-    var _apiclient=apiclient;
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -20,14 +21,14 @@ var ModuleStudyingClass = (function () {
         var token = localStorage.getItem("Authorization");
         var email = localStorage.getItem("username");
         var classId = localStorage.getItem("studying_class_id");
-        _apiclient.getUser(email,token).then(function(data){
+        apiclient.getUser(email,token).then(function(data){
             var request={
                 "requestId":{
                     "student": data.id,
                     "clase":classId
                 },
             };
-            _apiclient.postRequest(email,classId,request,token).then(function(){
+            apiclient.postRequest(email,classId,request,token).then(function(){
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -72,15 +73,15 @@ var ModuleStudyingClass = (function () {
         var token = localStorage.getItem("Authorization");
         var email = localStorage.getItem("username");
         var classId = localStorage.getItem("studying_class_id");
-        _apiclient.getUser(email,token).then(function(data){
-            _apiclient.getRequest(data.id,classId,changeButtons,token);
+        apiclient.getUser(email,token).then(function(data){
+            apiclient.getRequest(data.id,classId,changeButtons,token);
         });
     }
 
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("studying_class_id");
-        _apiclient.getClassById(classId,_write,token);
+        apiclient.getClassById(classId,_write,token);
     }
 
     return {

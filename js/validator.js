@@ -3,12 +3,13 @@ var validator = (function () {
     //http://localhost:8080
     //https://teache-me-front.herokuapp.com
 
-    var _login = login;
+    let apiclient = "js/apiclient.js";
+
 
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function redirect(){
-        _login.doLogout();
+        login.doLogout();
     }
 
     function loadPage(){

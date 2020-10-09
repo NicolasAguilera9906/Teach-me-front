@@ -1,6 +1,7 @@
 var ModuleSignup = (function () {
 
-    var _apiclient=apiclient;
+    let apiclient = "js/apiclient.js";
+
 
     function alertError(message){
         Swal.fire({

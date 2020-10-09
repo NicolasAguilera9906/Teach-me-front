@@ -20,7 +20,6 @@ $("#datetimepicker_create1").datetimepicker();
 
 var ModuleCreate = (function () {
 
-    var _apiclient=apiclient;
 
     function formatDate(element){
         var data = document.getElementById(element).value;
@@ -32,6 +31,9 @@ var ModuleCreate = (function () {
 
     
     function createClass(){
+
+        let apiclient = "js/apiclient.js";
+
 
         var datastring=formatDate("datetimepickercreate_input");
         var datastring1=formatDate("datetimepickercreate_input1");
@@ -46,7 +48,7 @@ var ModuleCreate = (function () {
             "dateOfInit": datastring,
             "dateOfEnd": datastring1
             };
-        _apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization"))
+        apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization"))
             .then(function (){
                 Swal.fire({
                     icon: "success",
