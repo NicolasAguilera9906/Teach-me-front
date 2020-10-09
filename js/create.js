@@ -20,6 +20,14 @@ $("#datetimepicker_create1").datetimepicker();
 
 var ModuleCreate = (function () {
 
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
+
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     function formatDate(element){
         var data = document.getElementById(element).value;
@@ -31,8 +39,6 @@ var ModuleCreate = (function () {
 
     
     function createClass(){
-
-        let apiclient = "js/apiclient.js";
 
 
         var datastring=formatDate("datetimepickercreate_input");
@@ -48,18 +54,20 @@ var ModuleCreate = (function () {
             "dateOfInit": datastring,
             "dateOfEnd": datastring1
             };
-        apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization"))
-            .then(function (){
-                Swal.fire({
-                    icon: "success",
-                    title: "Yeah!",
-                    text: "Class created"
-                });
-            }).catch((e) => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: e.responseText
+        $.getScript(_apiclient,function(){       
+            apiclient.postClass(localStorage.getItem("username"),clase,localStorage.getItem("Authorization"))
+                .then(function (){
+                    Swal.fire({
+                        icon: "success",
+                        title: "Yeah!",
+                        text: "Class created"
+                    });
+                }).catch((e) => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: e.responseText
+                    });
                 });
             });
     }

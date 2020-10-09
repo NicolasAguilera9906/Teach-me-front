@@ -1,7 +1,14 @@
 var Moduleindex = (function () {
 
-    let apiclient = "js/apiclient.js";
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
 
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
+
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     function  setName(){
         var name = $("#class_search").val();
@@ -37,13 +44,17 @@ var Moduleindex = (function () {
         });
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        apiclient.getTeachingClasses(email,_selectteachingclasses,token);
+        $.getScript(_apiclient,function(){
+            apiclient.getTeachingClasses(email,_selectteachingclasses,token);
+        });
     }
 
     function getStudyingClasses(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        apiclient.getStudyingClasses(email,_selectstudyingclasses,token);
+        $.getScript(_apiclient,function(){
+            apiclient.getStudyingClasses(email,_selectstudyingclasses,token);
+        });
     }
 
 

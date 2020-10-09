@@ -1,7 +1,15 @@
 var ModuleStudyingClass = (function () {
 
-    let apiclient = "js/apiclient.js";
 
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
+
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
+    let _apiclient = urlAPI+"/js/apiclient.js";
+    
     var status = null;
 
     function formatDate(fecha){
@@ -21,25 +29,27 @@ var ModuleStudyingClass = (function () {
         var token = localStorage.getItem("Authorization");
         var email = localStorage.getItem("username");
         var classId = localStorage.getItem("studying_class_id");
-        apiclient.getUser(email,token).then(function(data){
-            var request={
-                "requestId":{
-                    "student": data.id,
-                    "clase":classId
-                },
-            };
-            apiclient.postRequest(email,classId,request,token).then(function(){
-                Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "Your request has been sended",
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-                verifyRequestStatus();
+        $.getScript(_apiclient,function(){
+            apiclient.getUser(email,token).then(function(data){
+                var request={
+                    "requestId":{
+                        "student": data.id,
+                        "clase":classId
+                    },
+                };
+                apiclient.postRequest(email,classId,request,token).then(function(){
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your request has been sended",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    verifyRequestStatus();
+                })
+                
             })
-            
-        })
+        });
     }
 
     function changeButtons(err,data){
@@ -73,15 +83,19 @@ var ModuleStudyingClass = (function () {
         var token = localStorage.getItem("Authorization");
         var email = localStorage.getItem("username");
         var classId = localStorage.getItem("studying_class_id");
-        apiclient.getUser(email,token).then(function(data){
-            apiclient.getRequest(data.id,classId,changeButtons,token);
+        $.getScript(_apiclient,function(){
+            apiclient.getUser(email,token).then(function(data){
+                apiclient.getRequest(data.id,classId,changeButtons,token);
+            });
         });
     }
 
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("studying_class_id");
-        apiclient.getClassById(classId,_write,token);
+        $.getScript(_apiclient,function(){
+            apiclient.getClassById(classId,_write,token);
+        });
     }
 
     return {

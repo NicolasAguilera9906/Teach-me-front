@@ -1,8 +1,15 @@
 
 var Modulesearch = (function () {
 
-    let apiclient = "js/apiclient.js";
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
 
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
+
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -53,7 +60,9 @@ var Modulesearch = (function () {
     }
 
     function getClasses(){
-        apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
+        $.getScript(_apiclient,function(){
+            apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
+        });
     }
 
     return {

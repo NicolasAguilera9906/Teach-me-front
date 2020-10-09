@@ -1,10 +1,13 @@
 var ModuleTeachingClasse = (function () {
 
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
 
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
-    let apiclient = "js/apiclient.js";
-
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -22,24 +25,28 @@ var ModuleTeachingClasse = (function () {
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("class_id");
-        apiclient.getClassById(classId,_write,token);
+        $.getScript(_apiclient,function(){
+            apiclient.getClassById(classId,_write,token);
+        });
     }
 
     function deleteClass(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("class_id");
-        apiclient.deleteClass(email,classId,token).then(function(){
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Class deleted",
-                showConfirmButton: false,
-                timer: 2500
-            }).then(function(){
-                window.location.href=urlAPI+"/index.html";
-            });
-        })
+        $.getScript(_apiclient,function(){
+            apiclient.deleteClass(email,classId,token).then(function(){
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Class deleted",
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then(function(){
+                    window.location.href=urlAPI+"/index.html";
+                });
+            })
+        });
     }
 
     return {

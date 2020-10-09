@@ -4,9 +4,6 @@ var apiclient = (function () {
     const url = "https://teache-me-front.herokuapp.com";
 
 
-    let apiclient = "js/apiclient.js";
-
-    
     function postClass(userEmail,clase,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes",

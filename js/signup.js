@@ -1,6 +1,13 @@
 var ModuleSignup = (function () {
 
-    let apiclient = "js/apiclient.js";
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
+
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
 
     function alertError(message){
@@ -47,31 +54,33 @@ var ModuleSignup = (function () {
                 "password": password,
                 "description": description
             };
-            _apiclient.postUser(user).then(function (){
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    timer: 3000,
-                    width: 300,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener("mouseenter", Swal.stopTimer);
-                        toast.addEventListener("mouseleave", Swal.resumeTimer);
-                    }
-                });
-                Toast.fire({
-                    icon: "success",
-                    title: "Signed in successfully"
-                });
+            $.getScript(_apiclient,function(){
+                apiclient.postUser(user).then(function (){
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: "top-end",
+                        showConfirmButton: false,
+                        timer: 3000,
+                        width: 300,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener("mouseenter", Swal.stopTimer);
+                            toast.addEventListener("mouseleave", Swal.resumeTimer);
+                        }
+                    });
+                    Toast.fire({
+                        icon: "success",
+                        title: "Signed in successfully"
+                    });
 
-            }).catch((e) => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Ya existe un usario con dicho correo"
+                }).catch((e) => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: "Ya existe un usario con dicho correo"
+                    })
                 })
-            })
+            });
         }
     }
 

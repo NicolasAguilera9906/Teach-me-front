@@ -1,8 +1,8 @@
 "use strict";
 
+
 var app = (function () {
 
-    let apiclient = "js/apiclient.js";
 
     const constraints = {
         audio: true,
@@ -10,6 +10,7 @@ var app = (function () {
             width: 700, height: 500
         }
     };
+
 
     // Correcto!
     function handleSuccess(stream) {

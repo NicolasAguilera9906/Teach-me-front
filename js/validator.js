@@ -1,20 +1,25 @@
 var validator = (function () {
 
-    //http://localhost:8080
-    //https://teache-me-front.herokuapp.com
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
 
-    let apiclient = "js/apiclient.js";
 
 
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
+    let _apiclient = urlAPI+"/js/apiclient.js";
+    
     function redirect(){
         login.doLogout();
     }
 
     function loadPage(){
         var token = localStorage.getItem("Authorization");
-        apiclient.validatePage(token,redirect);
+        $.getScript(_apiclient,function(){
+            apiclient.validatePage(token,redirect);
+        });
     }
 
     return {

@@ -1,10 +1,17 @@
 var ModuleAccept = (function () {
 
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
     var _selectedId;
 
-    let apiclient = "js/apiclient.js";
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     function _map(list){
+
         var mapList=null;
         return mapList = list.map(function(request){
             return {
@@ -62,12 +69,14 @@ var ModuleAccept = (function () {
                     },
                     "accepted":true
                 };
-                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
-                    .then(function (){
-                        apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                $.getScript(_apiclient,function(){
+                    apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                        .then(function (){
+                            apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
-                    });
-            }
+                        });
+                    })
+                }
             else if (result.dismiss === Swal.DismissReason.cancel){
                 request={
                     "requestId":{
@@ -76,11 +85,13 @@ var ModuleAccept = (function () {
                     },
                     "accepted":false
                 };
-                apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
-                    .then(function (){
-                        apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                $.getScript(_apiclient,function(){
+                    apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                        .then(function (){
+                            apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
 
-                    });
+                        });
+                })
             }
         });
     }
@@ -89,8 +100,11 @@ var ModuleAccept = (function () {
 
     function getStudents(){
         var classId = localStorage.getItem("class_id");
-        apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
+        $.getScript(_apiclient,function(){
+            apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
+        });
     }
+
 
     return {
         getStudents:getStudents,
