@@ -2,7 +2,7 @@ var validator = (function () {
 
     //http://localhost:8080
     //https://teache-me-front.herokuapp.com
-    const urlAPI = "file:///C:/Users/nicol/Desktop/Teach-me-front";
+    const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function redirect(){
         login.doLogout();
