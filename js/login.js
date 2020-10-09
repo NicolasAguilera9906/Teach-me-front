@@ -5,20 +5,23 @@ var login = (function () {
     // https://teache-me-front.herokuapp.com
     // nicolas : file:///C:/Users/nicol/Desktop/
 
+    var _Swal=Swal;
+    var _apiclient=apiclient;
+
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function doLogin() {
         var email = $("#username").val();
         var passw = $("#password").val();
         var loginRequest = {username: email, password: passw};
-        apiclient.postLogin(loginRequest)
+        _apiclient.postLogin(loginRequest)
             .then(function(data, textStatus, request) {
                 var token = request.getResponseHeader("Authorization");
                 localStorage.setItem("Authorization",token);
                 localStorage.setItem("username",email);
                 location.href = urlAPI+"/index.html";
             }).catch( (e) => {
-                Swal.fire({
+                _Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Usuario o contraseña incorrectos"
@@ -27,7 +30,7 @@ var login = (function () {
     }
     function doLogout(){
         localStorage.clear();
-        window.location.href=urlAPI+"/authenticate.html"
+        window.location.href=urlAPI+"/authenticate.html";
     }
     return {
         doLogin:doLogin,

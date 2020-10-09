@@ -1,5 +1,7 @@
 var ModuleTeachingClasse = (function () {
 
+    var _apiclient=apiclient;
+
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function formatDate(fecha){
@@ -18,14 +20,14 @@ var ModuleTeachingClasse = (function () {
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("class_id");
-        apiclient.getClassById(classId,_write,token);
+        _apiclient.getClassById(classId,_write,token);
     }
 
     function deleteClass(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("class_id");
-        apiclient.deleteClass(email,classId,token).then(function(){
+        _apiclient.deleteClass(email,classId,token).then(function(){
             Swal.fire({
                 position: "center",
                 icon: "success",
@@ -34,7 +36,7 @@ var ModuleTeachingClasse = (function () {
                 timer: 2500
             }).then(function(){
                 window.location.href=urlAPI+"/index.html";
-            })
+            });
         })
     }
 

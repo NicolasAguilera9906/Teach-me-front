@@ -1,5 +1,7 @@
 var Moduleindex = (function () {
 
+    var _apiclient =  null;
+
 
     function  setName(){
         var name = $("#class_search").val();
@@ -35,13 +37,13 @@ var Moduleindex = (function () {
         });
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        apiclient.getTeachingClasses(email,_selectteachingclasses,token);
+        _apiclient.getTeachingClasses(email,_selectteachingclasses,token);
     }
 
     function getStudyingClasses(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        apiclient.getStudyingClasses(email,_selectstudyingclasses,token);
+        _apiclient.getStudyingClasses(email,_selectstudyingclasses,token);
     }
 
 

@@ -30,6 +30,7 @@ var app = (function () {
     return {
         init:init
     };
+    
 })();
 
 

@@ -3,6 +3,8 @@ var apiclient = (function () {
     //"http://localhost:8080"
     const url = "https://teache-me-front.herokuapp.com";
 
+    var _Swal=Swal;
+
     function postClass(userEmail,clase,token){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes",
@@ -119,7 +121,7 @@ var apiclient = (function () {
                 callback(data);
             },
             error: function (request){
-                Swal.fire({
+                _Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: request.responseText
@@ -156,7 +158,6 @@ var apiclient = (function () {
     }
 
     function postRequest(email,classId,request,token) {
-        console.log(request);
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes/"+classId+"/requests",
             type: "POST",

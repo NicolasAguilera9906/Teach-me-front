@@ -2,8 +2,10 @@ var ModuleAccept = (function () {
 
     var _selectedId;
     var _apiclient=apiclient;
+    var _Swal =Swal;
 
     function _map(list){
+        var mapList=null;
         return mapList = list.map(function(request){
             return {
                 nombre:request.student.firstName,
@@ -20,12 +22,11 @@ var ModuleAccept = (function () {
 
     function _table(requests){
         var listRequest = _map(requests);
-        console.log(listRequest);
         $("#table_students > tbody").empty();
         if (listRequest.length===0) {
             document.getElementById("table_footer").innerHTML = "No se encontraron estudiantes";
         }
-        else
+        else{
             listRequest.map(function(c){
                 var onclick = "ModuleAccept.acceptStudent(\""+c.idStudentd+"\")";
                 var stri="'"+onclick+"'";
@@ -37,11 +38,12 @@ var ModuleAccept = (function () {
                     "</tr>"
                 );
             });
+        }
     }
 
     function acceptStudent(id){
         setSelectedId(id);
-        Swal.fire({
+        _Swal.fire({
             title: "You want accept this student?",
             text: "You won't be able to revert this!",
             icon: "warning",
@@ -49,10 +51,11 @@ var ModuleAccept = (function () {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, accept!",
-            cancelButtonText: 'Dont accept'
+            cancelButtonText: "Dont accept"
         }).then((result) => {
+            var request = null;
             if (result.isConfirmed) {
-                var request={
+                request={
                     "requestId":{
                         "student":_selectedId,
                         "clase":localStorage.getItem("class_id")
@@ -65,8 +68,8 @@ var ModuleAccept = (function () {
 
                     });
             }
-            else if (result.dismiss === Swal.DismissReason.cancel){
-                var request={
+            else if (result.dismiss === _Swal.DismissReason.cancel){
+                request={
                     "requestId":{
                         "student":_selectedId,
                         "clase":localStorage.getItem("class_id")

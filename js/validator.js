@@ -2,10 +2,13 @@ var validator = (function () {
 
     //http://localhost:8080
     //https://teache-me-front.herokuapp.com
+
+    var _login = login;
+
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function redirect(){
-        login.doLogout();
+        _login.doLogout();
     }
 
     function loadPage(){

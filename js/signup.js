@@ -1,7 +1,10 @@
 var ModuleSignup = (function () {
 
+    var _Swal = Swal;
+    var _apiclient=apiclient;
+
     function alertError(message){
-        Swal.fire({
+        _Swal.fire({
             icon: "error",
             title: "Oops...",
             text: message
@@ -12,13 +15,13 @@ var ModuleSignup = (function () {
 
     function validate(email,firstName,lastName,password){
         var bool = true;
-        if (firstName==="") {
+        if (firstName=="") {
             bool = false;
             alertError("The name cannot be empty");
-        }else if (lastName===""){
+        }else if (lastName==""){
             bool = false;
             alertError("The last name cannot be empty");
-        }else if (password===""){
+        }else if (password==""){
             bool = false;
             alertError("The password cannot be empty");
         }else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))){
@@ -44,8 +47,8 @@ var ModuleSignup = (function () {
                 "password": password,
                 "description": description
             };
-            apiclient.postUser(user).then(function (){
-                const Toast = Swal.mixin({
+            _apiclient.postUser(user).then(function (){
+                const Toast = _Swal.mixin({
                     toast: true,
                     position: "top-end",
                     showConfirmButton: false,
@@ -53,19 +56,19 @@ var ModuleSignup = (function () {
                     width: 300,
                     timerProgressBar: true,
                     didOpen: (toast) => {
-                        toast.addEventListener("mouseenter", Swal.stopTimer);
-                        toast.addEventListener("mouseleave", Swal.resumeTimer);
+                        toast.addEventListener("mouseenter", _Swal.stopTimer);
+                        toast.addEventListener("mouseleave", _Swal.resumeTimer);
                     }
-                })
+                });
                 Toast.fire({
                     icon: "success",
                     title: "Signed in successfully"
                 });
 
             }).catch((e) => {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
+                _Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
                     text: "Ya existe un usario con dicho correo"
                 })
             })

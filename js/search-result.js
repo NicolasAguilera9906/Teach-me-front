@@ -1,6 +1,7 @@
 
 var Modulesearch = (function () {
 
+    var _apiclient=apiclient;
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -9,6 +10,7 @@ var Modulesearch = (function () {
     }
 
     function _map(list){
+        var mapList = null;
         return mapList = list.map(function(clase){
             return {
                 nombre:clase.nombre,
@@ -26,7 +28,7 @@ var Modulesearch = (function () {
         if (listClasses.length===0) {
             document.getElementById("table_footer").innerHTML = "No se encontraron clases";
         }
-        else
+        else{
             $("#table_class > tbody").empty();
             listClasses.map(function(c){
                 var onclick = "Modulesearch.getInfo(\""+c.id+"\")";
@@ -41,6 +43,7 @@ var Modulesearch = (function () {
                     "</tr>"
                 );
             });
+        }
     }
 
     function getInfo(id){
@@ -49,7 +52,7 @@ var Modulesearch = (function () {
     }
 
     function getClasses(){
-        apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
+        _apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
     }
 
     return {
