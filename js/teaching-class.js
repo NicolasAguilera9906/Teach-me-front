@@ -1,5 +1,7 @@
 var ModuleTeachingClasse = (function () {
 
+    const urlAPI = "https://teache-me-front.herokuapp.com";
+
     function formatDate(fecha){
         var datasplit=fecha.split("T");
         var datastring=datasplit.join(" ").split(".")[0].slice(0,-3);
@@ -19,7 +21,25 @@ var ModuleTeachingClasse = (function () {
         apiclient.getClassById(classId,_write,token);
     }
 
+    function deleteClass(){
+        var email = localStorage.getItem("username");
+        var token = localStorage.getItem("Authorization");
+        var classId = localStorage.getItem("class_id");
+        apiclient.deleteClass(email,classId,token).then(function(){
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Class deleted",
+                showConfirmButton: false,
+                timer: 2500
+            }).then(function(){
+                window.location.href=urlAPI+"/index.html";
+            })
+        })
+    }
+
     return {
-        getClass:getClass
+        getClass:getClass,
+        deleteClass:deleteClass
     };
 })();

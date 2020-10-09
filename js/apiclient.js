@@ -14,6 +14,16 @@ var apiclient = (function () {
         return data;
     }
 
+    function deleteClass(userEmail,classId,token){
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/classes/"+classId,
+            type: "DELETE",
+            contentType: "application/json",
+            headers: {"Authorization": token , "x-userEmail" : userEmail}
+        });
+        return data;
+    }
+
     function postUser(user){
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/users",
@@ -170,7 +180,8 @@ var apiclient = (function () {
         getStudyingClasses:getStudyingClasses,
         putRequest:putRequest,
         getUser:getUser,
-        postRequest:postRequest
+        postRequest:postRequest,
+        deleteClass:deleteClass
     };
 
 })();

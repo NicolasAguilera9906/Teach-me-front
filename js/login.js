@@ -3,6 +3,8 @@ var login = (function () {
 
     //Esta se cambia por la del heroku antes de desplegar "http://localhost:8080"
     // https://teache-me-front.herokuapp.com
+    // nicolas : file:///C:/Users/nicol/Desktop/
+
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     function doLogin() {
