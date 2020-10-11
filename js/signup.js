@@ -4,7 +4,6 @@ var ModuleSignup = (function () {
        LOCAL
        http://localhost:63342/Teach-me-front
      */
-
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     let _apiclient = urlAPI+"/js/apiclient.js";

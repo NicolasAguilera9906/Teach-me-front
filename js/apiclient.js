@@ -1,7 +1,5 @@
 var apiclient = (function () {
 
-    //"http://localhost:8080"
-    const url = "https://teache-me-front.herokuapp.com";
 
 
     function postClass(userEmail,clase,token){
@@ -130,17 +128,11 @@ var apiclient = (function () {
         return data;
     }
 
-    function getRequest(userId,classId,callback,token) {
+    function getRequest(userId,classId,token) {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/requests/"+classId+"/"+userId,
             type: "GET",
-            headers: {"Authorization": token},
-            success : function (data, text) {
-                callback(null,data);
-            },
-            error: function (request, status, error) {
-                callback(error,data);
-            }
+            headers: {"Authorization": token}
         });
         return data;
     }

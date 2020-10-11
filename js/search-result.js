@@ -5,7 +5,6 @@ var Modulesearch = (function () {
        LOCAL
        http://localhost:63342/Teach-me-front
      */
-
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
 

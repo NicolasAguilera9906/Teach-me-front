@@ -37,10 +37,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js" integrity="sha256-2JRzNxMJiS0aHOJjG+liqsEOuBb6++9cY4dSOyiijX4=" crossorigin="anonymous"></script>
 
-    <script src="/sweetalert2/dist/sweetalert2.all.js"></script>
+    <script src="/Teach-me-front/node_modules/sweetalert2/dist/sweetalert2.all.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
-    <!-- LOCAL
-        <script src="/Teach-me-front/sweetalert2/dist/sweetalert2.all.js"></script> -->
+
+
+    <!-- HEROKU
+        <script src="/sweetalert2/dist/sweetalert2.all.js"></script> -->
 
 </head>
 
@@ -110,8 +114,7 @@
 
                         <div class="col-sm-4" >
                             <button id ="inscribe_me" type="button" class="btn btn-primary" onclick="ModuleStudyingClass.sendRequest()" >Inscribe me </button>
-
-                            <button type="button" class="btn btn-primary">Connect </button>
+                            <button id ="connect" type="button" disabled="true" onclick="ModuleStudyingClass.connectToClass()" class="btn btn-primary">Connect </button>
 
                         </div>
 

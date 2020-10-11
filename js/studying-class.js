@@ -5,12 +5,14 @@ var ModuleStudyingClass = (function () {
        LOCAL
        http://localhost:63342/Teach-me-front
      */
-
     const urlAPI = "https://teache-me-front.herokuapp.com";
 
     let _apiclient = urlAPI+"/js/apiclient.js";
-    
-    var status = null;
+    let _chat = urlAPI+"/js/chat.js";
+
+    var token = localStorage.getItem("Authorization");
+    var email = localStorage.getItem("username");
+    var classId = localStorage.getItem("studying_class_id");
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -26,9 +28,6 @@ var ModuleStudyingClass = (function () {
     }
 
     function sendRequest(){
-        var token = localStorage.getItem("Authorization");
-        var email = localStorage.getItem("username");
-        var classId = localStorage.getItem("studying_class_id");
         $.getScript(_apiclient,function(){
             apiclient.getUser(email,token).then(function(data){
                 var request={
@@ -45,51 +44,55 @@ var ModuleStudyingClass = (function () {
                         showConfirmButton: false,
                         timer: 1500
                     });
-                    verifyRequestStatus();
+                    changeButtons();
                 })
                 
             })
         });
     }
 
-    function changeButtons(err,data){
-        if(err==null){
-            status = data.accepted;
-            document.getElementById("inscribe_me").setAttribute("onclick", "ModuleStudyingClass.showRequestStatus()");
-            document.getElementById("inscribe_me").innerText = "View Request Status";
-        }
-    }
-
     function showRequestStatus(){
-        var _status;
-        if(status==null){
-            _status="Not answered yet";
-        }
-        if(status===true){
-            _status="Accepted";
-        }
-        if(status===false){
-            _status="Rejected";
-        }
-
-        Swal.fire({
-            position : "center",
-            title: "The status of your request is",
-            text: _status,
-          })
-    }
-
-    function verifyRequestStatus(){
-        var token = localStorage.getItem("Authorization");
-        var email = localStorage.getItem("username");
-        var classId = localStorage.getItem("studying_class_id");
         $.getScript(_apiclient,function(){
             apiclient.getUser(email,token).then(function(data){
-                apiclient.getRequest(data.id,classId,changeButtons,token);
+                apiclient.getRequest(data.id,classId,token).then(function(data){
+                    var _status = data.accepted;
+                    if(_status==null){
+                        _status="Not answered yet";
+                    }
+                    if(_status===true){
+                        _status="Accepted";
+                    }
+                    if(_status===false){
+                        _status="Rejected";
+                    }
+                    Swal.fire({
+                        position : "center",
+                        title: "The status of your request is",
+                        text: _status,
+                    })
+                })
             });
         });
     }
 
+    function changeButtons(){
+        document.getElementById("inscribe_me").setAttribute("onclick", "ModuleStudyingClass.showRequestStatus()");
+        document.getElementById("inscribe_me").innerText = "View Request Status";
+    }
+    function verifyRequestStatus(){
+        $.getScript(_apiclient,function(){
+            apiclient.getUser(email,token).then(function(data){
+                apiclient.getRequest(data.id,classId,token).then(function(data){
+                    changeButtons();
+                    console.log(data);
+                    if(data.accepted == true){
+                        console.log("hola");
+                        document.getElementById("connect").disabled=false;
+                    }
+                });
+            });
+        });
+    }
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = localStorage.getItem("studying_class_id");
@@ -98,10 +101,15 @@ var ModuleStudyingClass = (function () {
         });
     }
 
+    function connectToClass(){
+        window.location.href="session.html";
+    }
+
     return {
         getClass:getClass,
         sendRequest:sendRequest,
         verifyRequestStatus:verifyRequestStatus,
-        showRequestStatus:showRequestStatus
+        showRequestStatus:showRequestStatus,
+        connectToClass:connectToClass
     };
 })();
