@@ -6,6 +6,7 @@ var login = (function () {
     /*
         LOCAL
         http://localhost:63342/Teach-me-front
+        https://teache-me-front.herokuapp.com
       */
     const urlAPI = "https://teache-me-front.herokuapp.com";
 

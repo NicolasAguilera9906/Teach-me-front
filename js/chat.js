@@ -20,9 +20,20 @@ var ModuleChat = (function () {
         console.log(stompClient);
         stompClient.connect({},function (frame) {
             console.log("Connected to: " + frame);
-            stompClient.subscribe("/topic/messages."+classId) , function (response) {
-                alert("hola");
-            }
+            stompClient.subscribe('/topic/messages.'+classId , function (response) {
+                console.log(response.body);
+                var message = JSON.parse(response.body);
+                var dateSend = new Date();
+                var date = dateSend.getHours()+":"+dateSend.getMinutes();
+                document.getElementById("message-container").innerHTML +="<div class=\"media msg \">\n" +
+                    "\n" +
+                    "                    <div class=\"media-body\">\n" +
+                    "                        <small class=\"pull-right time\"><i class=\"fa fa-clock-o\"></i>"+ date+"</small>\n" +
+                    "                        <h5 class=\"media-heading\">"+ message.sender +"</h5>\n" +
+                    "                        <small class=\"col-lg-10\">"+ message.content+"</small>\n" +
+                    "                    </div>\n" +
+                    "                </div>"
+            });
         });
     }
 
@@ -30,6 +41,7 @@ var ModuleChat = (function () {
         var message = new Messsage(_message,email);
         stompClient.send("/app/messages."+_classId,{},JSON.stringify(message));
         console.log(email+" :"+_message);
+
     }
 
     function disconnect(){

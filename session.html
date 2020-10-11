@@ -13,6 +13,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 
 
+    <link rel="stylesheet" href="css/chat.css">
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+
     <script>
         function loadapp(){
             validator().loadPage();
@@ -23,11 +33,42 @@
 </head>
 <body onload="loadapp()">
 
-        <form id="messageForm">
-            <input type="text" id="messageInput" placeholder="Type..."/>
-            <button type="button"  id="btn" onclick="ModuleChat.sendMessage(messageInput.value)"> Send </button>
-        </form>
+
+<div class="container">
+    <div class="card" style="border-style: none; border-radius: 25px !important; box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.75);">
+        <div class="card-body" style="font-family: 'Montserrat', sans-serif !important;">
+
+            <div id="center" class="row"  >
+                <div class="message-wrap col-lg-8" >
+                    <div id="message-container" class="msg-wrap">
+
+
+
+                    </div>
+
+
+
+                    <div class="send-wrap " style="text-align: center">
+
+                        <form id="messageForm">
+                            <input type="text" id="messageInput" placeholder="Type..."/>
+                            <button type="button"  id="btn" onclick="ModuleChat.sendMessage(messageInput.value)"> Send </button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
 </body>
 
 
 </html>
+
