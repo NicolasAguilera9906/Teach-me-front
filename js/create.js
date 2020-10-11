@@ -49,7 +49,7 @@ var ModuleCreate = (function () {
             "nombre":name,
             "capacity":capacity,
             "description":description,
-            "amountOfStudents": 20,
+            "amountOfStudents": 0,
             "dateOfInit": datastring,
             "dateOfEnd": datastring1
             };

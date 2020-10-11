@@ -4,6 +4,7 @@ var ModuleChat = (function () {
     const urlAPI = "https://teach2-me.herokuapp.com";
     var classId = localStorage.getItem("studying_class_id");
     var email = localStorage.getItem("username");
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     class Messsage {
         constructor(content, sender) {
@@ -12,8 +13,48 @@ var ModuleChat = (function () {
         }
     }
 
+    function putMessage(user,message,date){
+        document.getElementById("message-container").innerHTML +="<div class=\"media msg \">\n" +
+            "\n" +
+            "                    <div class=\"media-body\">\n" +
+            "                        <small class=\"pull-right time\"><i class=\"fa fa-clock-o\"></i>"+ date+"</small>\n" +
+            "                        <h5 class=\"media-heading\">"+ user +"</h5>\n" +
+            "                        <small class=\"col-lg-10\">"+ message+"</small>\n" +
+            "                    </div>\n" +
+            "                </div>"
+    }
+
+    function show(data){
+        var listMessages = _map(data);
+        listMessages.map(function(c){
+            var date = c.date.split('T')[1].slice(0,5);
+            putMessage(c.sender,c.content,date);
+
+        });
+
+    }
+
+
+
+    function _map(list){
+        var mapList = null;
+        return mapList = list.map(function(message){
+            return {
+                content:message.content,
+                sender:message.sender,
+                date:message.date
+
+            };
+        });
+    }
+
+    function loadMessages(){
+        apiclient.getMessagesById(classId,email, show, localStorage.getItem("Authorization"));
+
+
+    }
+
     function connectToChat() {
-        _classId=classId;
         console.log("Conecting to chat...")
         let socket = new SockJS(urlAPI + '/chat');
         stompClient = Stomp.over(socket);
@@ -25,21 +66,14 @@ var ModuleChat = (function () {
                 var message = JSON.parse(response.body);
                 var dateSend = new Date();
                 var date = dateSend.getHours()+":"+dateSend.getMinutes();
-                document.getElementById("message-container").innerHTML +="<div class=\"media msg \">\n" +
-                    "\n" +
-                    "                    <div class=\"media-body\">\n" +
-                    "                        <small class=\"pull-right time\"><i class=\"fa fa-clock-o\"></i>"+ date+"</small>\n" +
-                    "                        <h5 class=\"media-heading\">"+ message.sender +"</h5>\n" +
-                    "                        <small class=\"col-lg-10\">"+ message.content+"</small>\n" +
-                    "                    </div>\n" +
-                    "                </div>"
+                putMessage(message.sender,message.content,date);
             });
         });
     }
 
     function sendMessage(_message){
         var message = new Messsage(_message,email);
-        stompClient.send("/app/messages."+_classId,{},JSON.stringify(message));
+        stompClient.send("/app/messages."+classId,{},JSON.stringify(message));
         console.log(email+" :"+_message);
 
     }
@@ -53,6 +87,7 @@ var ModuleChat = (function () {
 
     return {
         connectToChat:connectToChat,
-        sendMessage:sendMessage
+        sendMessage:sendMessage,
+        loadMessages:loadMessages
     };
 })();

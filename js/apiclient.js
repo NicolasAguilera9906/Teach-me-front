@@ -123,6 +123,9 @@ var apiclient = (function () {
                     title: "Oops...",
                     text: request.responseText
                 });
+                $("#table_students > tbody").empty();
+
+
             }
         });
         return data;
@@ -159,6 +162,18 @@ var apiclient = (function () {
         return data;
     }
 
+
+    function getMessagesById(classId,email, callback , token) {
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/messages/"+classId,
+            type: "GET",
+            headers: {"Authorization": token,"x-userEmail" : email},
+            success : function (data, text) {
+                callback(data);
+            }});
+        return data;
+    }
+
     return {
         postClass:postClass,
         getClassByName:getClassByName,
@@ -173,7 +188,8 @@ var apiclient = (function () {
         putRequest:putRequest,
         getUser:getUser,
         postRequest:postRequest,
-        deleteClass:deleteClass
+        deleteClass:deleteClass,
+        getMessagesById:getMessagesById
     };
 
 })();
