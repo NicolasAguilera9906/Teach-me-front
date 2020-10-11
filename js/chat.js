@@ -1,7 +1,7 @@
 var ModuleChat = (function () {
 
     var stompClient =  null;
-    const urlAPI = "https://teache-me-front.herokuapp.com";
+    const urlAPI = "https://teach2-me.herokuapp.com";
     var classId = localStorage.getItem("studying_class_id");
     var email = localStorage.getItem("username");
 
