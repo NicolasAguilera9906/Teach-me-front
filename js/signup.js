@@ -21,13 +21,13 @@ var ModuleSignup = (function () {
 
     function validate(email,firstName,lastName,password){
         var bool = true;
-        if (firstName=="") {
+        if (firstName==="") {
             bool = false;
             alertError("The name cannot be empty");
-        }else if (lastName==""){
+        }else if (lastName===""){
             bool = false;
             alertError("The last name cannot be empty");
-        }else if (password==""){
+        }else if (password===""){
             bool = false;
             alertError("The password cannot be empty");
         }else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))){
@@ -77,7 +77,7 @@ var ModuleSignup = (function () {
                         icon: "error",
                         title: "Oops...",
                         text: "Ya existe un usario con dicho correo"
-                    })
+                    });
                 })
             });
         }

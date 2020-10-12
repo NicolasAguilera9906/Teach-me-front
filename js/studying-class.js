@@ -1,5 +1,11 @@
 var ModuleStudyingClass = (function () {
 
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 
     /*
        LOCAL
@@ -18,6 +24,11 @@ var ModuleStudyingClass = (function () {
         var datasplit=fecha.split("T");
         var datastring=datasplit.join(" ").split(".")[0].slice(0,-3);
         return datastring;
+    }
+
+    function changeButtons(){
+        document.getElementById("inscribe_me").setAttribute("onclick", "ModuleStudyingClass.showRequestStatus()");
+        document.getElementById("inscribe_me").innerText = "View Request Status";
     }
 
     function _write(data){
@@ -75,29 +86,17 @@ var ModuleStudyingClass = (function () {
         });
     }
 
-    function changeButtons(){
-        document.getElementById("inscribe_me").setAttribute("onclick", "ModuleStudyingClass.showRequestStatus()");
-        document.getElementById("inscribe_me").innerText = "View Request Status";
-    }
     function verifyRequestStatus(){
         $.getScript(_apiclient,function(){
             apiclient.getUser(email,token).then(function(data){
                 apiclient.getRequest(data.id,classId,token).then(function(data){
                     changeButtons();
-                    console.log(data);
-                    if(data.accepted == true){
-                        console.log("hola");
+                    if(data.accepted === true){
                         document.getElementById("connect").disabled=false;
                     }
                 });
             });
         });
-    }
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     function getClass(){

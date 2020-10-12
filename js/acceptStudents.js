@@ -82,7 +82,7 @@ var ModuleAccept = (function () {
                             apiclient.getRequestsOfAClass(localStorage.getItem("username"),getParameterByName("class"),_table,localStorage.getItem("Authorization"));
 
                         });
-                    })
+                    });
                 }
             else if (result.dismiss === Swal.DismissReason.cancel){
                 request={

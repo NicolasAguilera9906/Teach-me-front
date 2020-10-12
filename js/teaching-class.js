@@ -51,7 +51,7 @@ var ModuleTeachingClasse = (function () {
                 }).then(function(){
                     window.location.href=urlAPI+"/index.html";
                 });
-            })
+            });
         });
     }
 

@@ -1,10 +1,11 @@
 var ModuleChat = (function () {
 
-    var stompClient =  null;
-    const urlAPI = "https://teach2-me.herokuapp.com";
-    var classId = getParameterByName("class");
-    var email = localStorage.getItem("username");
-    let _apiclient = urlAPI+"/js/apiclient.js";
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
 
     class Messsage {
         constructor(content, sender) {
@@ -13,12 +14,11 @@ var ModuleChat = (function () {
         }
     }
 
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+    var stompClient =  null;
+    const urlAPI = "https://teach2-me.herokuapp.com";
+    var classId = getParameterByName("class");
+    var email = localStorage.getItem("username");
+    let _apiclient = urlAPI+"/js/apiclient.js";
 
     function putMessage(user,message,date){
         document.getElementById("message-container").innerHTML +="<div class=\"media msg \">\n" +
@@ -28,7 +28,7 @@ var ModuleChat = (function () {
             "                        <h5 class=\"media-heading\">"+ user +"</h5>\n" +
             "                        <small class=\"col-lg-10\">"+ message+"</small>\n" +
             "                    </div>\n" +
-            "                </div>"
+            "                </div>";
     }
 
     function show(data){
@@ -62,7 +62,7 @@ var ModuleChat = (function () {
     }
 
     function connectToChat() {
-        console.log("Conecting to chat...")
+        console.log("Conecting to chat...");
         let socket = new SockJS(urlAPI + '/chat');
         stompClient = Stomp.over(socket);
         console.log(stompClient);
