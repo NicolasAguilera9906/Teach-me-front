@@ -12,7 +12,7 @@ var ModuleStudyingClass = (function () {
 
     var token = localStorage.getItem("Authorization");
     var email = localStorage.getItem("username");
-    var classId = localStorage.getItem("studying_class_id");
+    var classId = getParameterByName("class");
 
     function formatDate(fecha){
         var datasplit=fecha.split("T");
@@ -93,16 +93,23 @@ var ModuleStudyingClass = (function () {
             });
         });
     }
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
     function getClass(){
         var token = localStorage.getItem("Authorization");
-        var classId = localStorage.getItem("studying_class_id");
+        var classId = getParameterByName("class");
         $.getScript(_apiclient,function(){
             apiclient.getClassById(classId,_write,token);
         });
     }
 
     function connectToClass(){
-        window.location.href="session.html";
+        window.location.href="session.html?class="+classId;
     }
 
     return {

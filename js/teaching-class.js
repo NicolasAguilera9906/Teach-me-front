@@ -21,9 +21,16 @@ var ModuleTeachingClasse = (function () {
         $("#date_of_end").append(formatDate(data.dateOfEnd));
     }
 
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
     function getClass(){
         var token = localStorage.getItem("Authorization");
-        var classId = localStorage.getItem("class_id");
+        var classId = getParameterByName("class");
         $.getScript(_apiclient,function(){
             apiclient.getClassById(classId,_write,token);
         });
@@ -32,7 +39,7 @@ var ModuleTeachingClasse = (function () {
     function deleteClass(){
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
-        var classId = localStorage.getItem("class_id");
+        var classId = getParameterByName("class");
         $.getScript(_apiclient,function(){
             apiclient.deleteClass(email,classId,token).then(function(){
                 Swal.fire({
@@ -48,8 +55,14 @@ var ModuleTeachingClasse = (function () {
         });
     }
 
+    function viewRequests(){
+        var classId = getParameterByName("class");
+        window.location.href='accept.html?class='+classId;
+    }
+
     return {
         getClass:getClass,
-        deleteClass:deleteClass
+        deleteClass:deleteClass,
+        viewRequests:viewRequests
     };
 })();

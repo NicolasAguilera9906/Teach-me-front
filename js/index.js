@@ -9,9 +9,9 @@ var Moduleindex = (function () {
 
     let _apiclient = urlAPI+"/js/apiclient.js";
 
-    function  setName(){
+    function  redirectSearchResults(){
         var name = $("#class_search").val();
-        localStorage.setItem("name",name);
+        window.location.href="search-result.html?query="+name;
     }
 
     function _selectteachingclasses(data){
@@ -35,12 +35,6 @@ var Moduleindex = (function () {
     }
 
     function getTeachingClasses(){
-        $("#studying_classes").on("change",function(){
-            $(this).find("option:selected").each(function(){
-                localStorage.setItem("studying_class_id",$(this).attr("value"));
-                window.location.href="selectclass.html";
-            });
-        });
         var email = localStorage.getItem("username");
         var token = localStorage.getItem("Authorization");
         $.getScript(_apiclient,function(){
@@ -60,8 +54,8 @@ var Moduleindex = (function () {
 
 
     return {
-        setName:setName,
         getStudyingClasses:getStudyingClasses,
         getTeachingClasses:getTeachingClasses,
+        redirectSearchResults:redirectSearchResults
     };
 })();

@@ -48,6 +48,13 @@ var ModuleAccept = (function () {
         }
     }
 
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
     function acceptStudent(id){
         setSelectedId(id);
         Swal.fire({
@@ -65,14 +72,14 @@ var ModuleAccept = (function () {
                 request={
                     "requestId":{
                         "student":_selectedId,
-                        "clase":localStorage.getItem("class_id")
+                        "clase":getParameterByName("class")
                     },
                     "accepted":true
                 };
                 $.getScript(_apiclient,function(){
-                    apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                    apiclient.putRequest(localStorage.getItem("username"),getParameterByName("class"),request,localStorage.getItem("Authorization"))
                         .then(function (){
-                            apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                            apiclient.getRequestsOfAClass(localStorage.getItem("username"),getParameterByName("class"),_table,localStorage.getItem("Authorization"));
 
                         });
                     })
@@ -81,14 +88,14 @@ var ModuleAccept = (function () {
                 request={
                     "requestId":{
                         "student":_selectedId,
-                        "clase":localStorage.getItem("class_id")
+                        "clase":getParameterByName("class")
                     },
                     "accepted":false
                 };
                 $.getScript(_apiclient,function(){
-                    apiclient.putRequest(localStorage.getItem("username"),localStorage.getItem("class_id"),request,localStorage.getItem("Authorization"))
+                    apiclient.putRequest(localStorage.getItem("username"),getParameterByName("class"),request,localStorage.getItem("Authorization"))
                         .then(function (){
-                            apiclient.getRequestsOfAClass(localStorage.getItem("username"),localStorage.getItem("class_id"),_table,localStorage.getItem("Authorization"));
+                            apiclient.getRequestsOfAClass(localStorage.getItem("username"),getParameterByName("class"),_table,localStorage.getItem("Authorization"));
 
                         });
                 })
@@ -99,7 +106,7 @@ var ModuleAccept = (function () {
 
 
     function getStudents(){
-        var classId = localStorage.getItem("class_id");
+        var classId = getParameterByName("class");
         $.getScript(_apiclient,function(){
             apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
         });

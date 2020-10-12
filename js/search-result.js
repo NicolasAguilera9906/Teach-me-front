@@ -54,13 +54,19 @@ var Modulesearch = (function () {
     }
 
     function getInfo(id){
-        localStorage.setItem("studying_class_id",id);
-        window.location.href="selectclass.html";
+        window.location.href="selectclass.html?class="+id;
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     function getClasses(){
         $.getScript(_apiclient,function(){
-            apiclient.getClassByName(localStorage.getItem("name"),_table,localStorage.getItem("Authorization"));
+            apiclient.getClassByName(getParameterByName("query"),_table,localStorage.getItem("Authorization"));
         });
     }
 

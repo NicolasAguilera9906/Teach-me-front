@@ -2,7 +2,7 @@ var ModuleChat = (function () {
 
     var stompClient =  null;
     const urlAPI = "https://teach2-me.herokuapp.com";
-    var classId = localStorage.getItem("studying_class_id");
+    var classId = getParameterByName("class");
     var email = localStorage.getItem("username");
     let _apiclient = urlAPI+"/js/apiclient.js";
 
@@ -11,6 +11,13 @@ var ModuleChat = (function () {
             this.content = content;
             this.sender = sender;
         }
+    }
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
     function putMessage(user,message,date){
