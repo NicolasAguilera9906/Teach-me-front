@@ -29,6 +29,7 @@ var ModuleChat = (function () {
             "                        <small class=\"col-lg-10\">"+ message+"</small>\n" +
             "                    </div>\n" +
             "                </div>";
+
     }
 
     function show(data){
@@ -58,7 +59,6 @@ var ModuleChat = (function () {
     function loadMessages(){
         apiclient.getMessagesById(classId,email, show, localStorage.getItem("Authorization"));
 
-
     }
 
     function connectToChat() {
@@ -74,6 +74,7 @@ var ModuleChat = (function () {
                 var dateSend = new Date();
                 var date = dateSend.getHours()+":"+dateSend.getMinutes();
                 putMessage(message.sender,message.content,date);
+                $("#message-container").animate({scrollTop:2000},1000);
             });
         });
     }
