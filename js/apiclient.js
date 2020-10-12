@@ -99,11 +99,11 @@ var apiclient = (function () {
                     position: "center",
                     icon: "error",
                     title: "Oops...",
-                    text: JSON.parse(request.responseText).message,
+                    text: request.responseText,
                     showConfirmButton: false,
                     timer: 2500
                 }).then(function(){
-                    window.location.href="https://teach2-me.herokuapp.com/index.html";
+                    window.location.href="https://teache-me-front.herokuapp.com/index.html";
                 });
             }
         });

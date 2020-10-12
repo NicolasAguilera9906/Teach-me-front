@@ -108,9 +108,24 @@ var ModuleStudyingClass = (function () {
     function getClass(){
         var token = localStorage.getItem("Authorization");
         var classId = getParameterByName("class");
-        $.getScript(_apiclient,function(){
+        if (classId===""){
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Oops...",
+                text: "Not class selected",
+                showConfirmButton: false,
+                timer: 2500
+            }).then(function(){
+                window.location.href=urlAPI+"/index.html";
+            });
+        }
+        else {
+            $.getScript(_apiclient,function(){
             apiclient.getClassById(classId,_write,token);
-        });
+            });
+        }
+
     }
 
     function connectToClass(){
