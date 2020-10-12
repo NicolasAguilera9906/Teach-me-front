@@ -96,11 +96,15 @@ var apiclient = (function () {
             },
             error: function (request){
                 Swal.fire({
+                    position: "center",
                     icon: "error",
                     title: "Oops...",
-                    text: JSON.parse(request.responseText).message
+                    text: JSON.parse(request.responseText).message,
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then(function(){
+                    window.location.href="https://teach2-me.herokuapp.com/index.html";
                 });
-
             }
         });
 
@@ -121,7 +125,6 @@ var apiclient = (function () {
                     title: "Oops...",
                     text: request.responseText
                 });
-
             }
         });
         return data;

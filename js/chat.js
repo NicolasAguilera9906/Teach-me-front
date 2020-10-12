@@ -81,6 +81,7 @@ var ModuleChat = (function () {
     function sendMessage(_message){
         var message = new Messsage(_message,email);
         stompClient.send("/app/messages."+classId,{},JSON.stringify(message));
+        $("#messageInput").val('');
         console.log(email+" :"+_message);
 
     }
