@@ -30,6 +30,7 @@ var ModuleChat = (function () {
             "                    </div>\n" +
             "                </div>";
 
+
     }
 
     function show(data){
@@ -74,7 +75,8 @@ var ModuleChat = (function () {
                 var dateSend = new Date();
                 var date = dateSend.getHours()+":"+dateSend.getMinutes();
                 putMessage(message.sender,message.content,date);
-                $("#message-container").animate({scrollTop:2000},1000);
+                $("#message-container").animate({scrollTop:200000},5000);
+
             });
         });
     }
@@ -84,6 +86,7 @@ var ModuleChat = (function () {
         stompClient.send("/app/messages."+classId,{},JSON.stringify(message));
         $("#messageInput").val('');
         console.log(email+" :"+_message);
+
 
     }
 
