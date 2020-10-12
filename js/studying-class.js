@@ -56,9 +56,15 @@ var ModuleStudyingClass = (function () {
                         timer: 1500
                     });
                     changeButtons();
-                })
+                }).catch((e) => {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: e.responseText
+                    });
+                });
                 
-            })
+            });
         });
     }
 

@@ -93,11 +93,20 @@ var apiclient = (function () {
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
+            },
+            error: function (request){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: JSON.parse(request.responseText).message
+                });
+
             }
         });
 
         return data;
     }
+
     function getClassByName(className, callback , token) {
         var data = $.ajax({
             url: "https://teach2-me.herokuapp.com/api/v1/classes?name="+className,
@@ -105,7 +114,16 @@ var apiclient = (function () {
             headers: {"Authorization": token},
             success : function (data, text) {
                 callback(data);
-            }});
+            },
+            error: function (request){
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: request.responseText
+                });
+
+            }
+        });
         return data;
     }
 
@@ -124,8 +142,6 @@ var apiclient = (function () {
                     text: request.responseText
                 });
                 $("#table_students > tbody").empty();
-
-
             }
         });
         return data;
@@ -170,7 +186,20 @@ var apiclient = (function () {
             headers: {"Authorization": token,"x-userEmail" : email},
             success : function (data, text) {
                 callback(data);
-            }});
+            },
+            error: function (request){
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "No class selected",
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then(function(){
+                    window.location.href="https://teache-me-front.herokuapp.com/index.html";
+                });
+
+            }
+        });
         return data;
     }
 

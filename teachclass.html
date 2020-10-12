@@ -10,6 +10,7 @@
     <script type="text/javascript" src="js/apiclient.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
     <script type="text/javascript" src="js/teaching-class.js"></script>
+    <script type="text/javascript" src="js/studying-class.js"></script>
     <script>
         function loadapp(){
             validator().loadPage();
@@ -99,6 +100,7 @@
                             <div class="btn-group-vertical" role="group" >
                                 <button onclick="ModuleTeachingClasse.deleteClass()" type="button" class="btn btn-primary">Delete class</button>
                                 <button type="button" class="btn btn-primary" onclick="ModuleTeachingClasse.viewRequests()">View Requests</button>
+                                <button id ="connect" type="button"  onclick="ModuleStudyingClass.connectToClass()" class="btn btn-primary">Connect </button>
                             </div>
 
                         </div>
