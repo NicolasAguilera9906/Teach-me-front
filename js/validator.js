@@ -5,7 +5,7 @@ var validator = (function () {
        http://localhost:63342/Teach-me-front
        https://teache-me-front.herokuapp.com
      */
-    const urlAPI = "http://localhost:63342/Teach-me-front";
+    const urlAPI = "https://teache-me-front.herokuapp.com";
 
     let _apiclient = urlAPI+"/js/apiclient.js";
     
