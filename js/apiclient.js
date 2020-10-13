@@ -121,9 +121,14 @@ var apiclient = (function () {
             },
             error: function (request){
                 Swal.fire({
+                    position: "center",
                     icon: "error",
                     title: "Oops...",
-                    text: request.responseText
+                    text: request.responseText,
+                    showConfirmButton: false,
+                    timer: 2500
+                }).then(function(){
+                    window.location.href="https://teache-me-front.herokuapp.com/index.html";
                 });
             }
         });

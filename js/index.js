@@ -50,12 +50,22 @@ var Moduleindex = (function () {
         });
     }
 
+    function showName(){
+        apiclient.getUser(localStorage.getItem("username"),localStorage.getItem("Authorization")).
+            then(function (data){
+                document.getElementById("welcome").innerHTML = "Welcome "+data.firstName+" "+data.lastName;
+        })
+    }
+
+
+
 
 
 
     return {
         getStudyingClasses:getStudyingClasses,
         getTeachingClasses:getTeachingClasses,
-        redirectSearchResults:redirectSearchResults
+        redirectSearchResults:redirectSearchResults,
+        showName:showName
     };
 })();

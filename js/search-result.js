@@ -68,6 +68,8 @@ var Modulesearch = (function () {
         $.getScript(_apiclient,function(){
             apiclient.getClassByName(getParameterByName("query"),_table,localStorage.getItem("Authorization"));
         });
+        document.getElementById("result_footer").innerHTML ="Results of: " + getParameterByName("query");
+
     }
 
     return {
