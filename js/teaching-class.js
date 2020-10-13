@@ -57,7 +57,6 @@ var ModuleTeachingClasse = (function () {
         var token = localStorage.getItem("Authorization");
         var classId = getParameterByName("class");
         $.getScript(_apiclient,function(){
-            apiclient.deleteClass(email,classId,token).then(function(){
                 Swal.fire({
                     title: "Are you sure?",
                     text: "You won't be able to revert this!",
@@ -68,6 +67,7 @@ var ModuleTeachingClasse = (function () {
                     confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        apiclient.deleteClass(email,classId,token);
                         Swal.fire(
                             "Deleted!",
                             "Your class has been deleted.",
@@ -77,8 +77,6 @@ var ModuleTeachingClasse = (function () {
                         })
                     }
                 })
-
-            });
         });
     }
 
