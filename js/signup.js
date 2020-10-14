@@ -8,7 +8,6 @@ var ModuleSignup = (function () {
 
     let _apiclient = urlAPI+"/js/apiclient.js";
 
-
     function alertError(message){
         Swal.fire({
             icon: "error",
@@ -44,7 +43,6 @@ var ModuleSignup = (function () {
         var password = document.getElementById("pass").value;
         var description = document.getElementById("description_signup").value;
         var bool=validate(email,firstName,lastName,password);
-
         if(bool){
             var user = {
                 "email":email,
@@ -71,14 +69,13 @@ var ModuleSignup = (function () {
                         icon: "success",
                         title: "Signed in successfully"
                     });
-
                 }).catch((e) => {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
                         text: "Ya existe un usario con dicho correo"
                     });
-                })
+                });
             });
         }
     }

@@ -32,7 +32,6 @@ var ModuleStudyingClass = (function () {
     }
 
     function _write(data){
-
         $("#class_name").append(data.nombre);
         $("#class_availability").append((data.capacity-data.amountOfStudents));
         $("#description_class").append(data.description);
@@ -88,7 +87,7 @@ var ModuleStudyingClass = (function () {
                         position : "center",
                         title: "The status of your request is",
                         text: _status,
-                    })
+                    });
                 })
             });
         });

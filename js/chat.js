@@ -33,18 +33,6 @@ var ModuleChat = (function () {
 
     }
 
-    function show(data){
-        var listMessages = _map(data);
-        listMessages.map(function(c){
-            var date = c.date.split('T')[1].slice(0,5);
-            putMessage(c.sender,c.content,date);
-
-        });
-
-    }
-
-
-
     function _map(list){
         var mapList = null;
         return mapList = list.map(function(message){
@@ -52,9 +40,17 @@ var ModuleChat = (function () {
                 content:message.content,
                 sender:message.sender,
                 date:message.date
-
             };
         });
+    }
+
+    function show(data){
+        var listMessages = _map(data);
+        listMessages.map(function(c){
+            var date = c.date.split('T')[1].slice(0,5);
+            putMessage(c.sender,c.content,date);
+        });
+
     }
 
     function loadMessages(){
@@ -76,7 +72,6 @@ var ModuleChat = (function () {
                 var date = dateSend.getHours()+":"+dateSend.getMinutes();
                 putMessage(message.sender,message.content,date);
                 $("#message-container").animate({scrollTop:200000},5000);
-
             });
         });
     }
@@ -86,8 +81,6 @@ var ModuleChat = (function () {
         stompClient.send("/app/messages."+classId,{},JSON.stringify(message));
         $("#messageInput").val('');
         console.log(email+" :"+_message);
-
-
     }
 
     function disconnect(){

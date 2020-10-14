@@ -11,7 +11,6 @@ var ModuleAccept = (function () {
     let _apiclient = urlAPI+"/js/apiclient.js";
 
     function _map(list){
-
         var mapList=null;
         return mapList = list.map(function(request){
             return {
@@ -96,14 +95,11 @@ var ModuleAccept = (function () {
                     apiclient.putRequest(localStorage.getItem("username"),getParameterByName("class"),request,localStorage.getItem("Authorization"))
                         .then(function (){
                             apiclient.getRequestsOfAClass(localStorage.getItem("username"),getParameterByName("class"),_table,localStorage.getItem("Authorization"));
-
                         });
-                })
+                });
             }
         });
     }
-
-
 
     function getStudents(){
         var classId = getParameterByName("class");
@@ -111,7 +107,6 @@ var ModuleAccept = (function () {
             apiclient.getRequestsOfAClass(localStorage.getItem("username"),classId,_table,localStorage.getItem("Authorization"));
         });
     }
-
 
     return {
         getStudents:getStudents,

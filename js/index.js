@@ -16,7 +16,7 @@ var Moduleindex = (function () {
                 icon: 'error',
                 title: 'Oops...',
                 text: "Type something",
-            })
+            });
         }
         else {
             window.location.href = "search-result.html?query=" + name;
