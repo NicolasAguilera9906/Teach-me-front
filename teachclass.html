@@ -35,6 +35,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.js" integrity="sha256-2JRzNxMJiS0aHOJjG+liqsEOuBb6++9cY4dSOyiijX4=" crossorigin="anonymous"></script>
 
 
+    <link rel="stylesheet" href="css/buttons.css">
+
     <script src="/sweetalert2/dist/sweetalert2.all.js"></script>
 
     <!-- Local
@@ -46,7 +48,7 @@
 
 </head>
 
-<body onload = "loadapp()" style="background-color: #f8f8f8">
+<body onload = "loadapp()" style="background-color: #f6f6f7">
 
 
 
@@ -102,8 +104,9 @@
 
                             <div class="btn-group-vertical" role="group" >
                                 <button onclick="ModuleTeachingClasse.deleteClass()" type="button" class="btn btn-primary">Delete class</button>
-                                <button type="button" class="btn btn-primary" onclick="ModuleTeachingClasse.viewRequests()">View Requests</button>
-                                <button id ="connect" type="button"  onclick="ModuleStudyingClass.connectToClass()" class="btn btn-primary">Connect </button>
+
+                                <button type="button" class="btn btn-primary" onclick="ModuleTeachingClasse.viewRequests()" style="margin-top: 5%;">View Requests</button>
+                                <button id ="connect" type="button"  onclick="ModuleStudyingClass.connectToClass()" class="btn btn-primary" style="margin-top: 5%;">Connect </button>
                             </div>
 
                         </div>
