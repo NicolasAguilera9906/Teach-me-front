@@ -11,7 +11,16 @@ var Moduleindex = (function () {
 
     function  redirectSearchResults(){
         var name = $("#class_search").val();
-        window.location.href="search-result.html?query="+name;
+        if (name === ""){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Type something",
+            })
+        }
+        else {
+            window.location.href = "search-result.html?query=" + name;
+        }
     }
 
     function _selectteachingclasses(data){

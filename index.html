@@ -47,9 +47,19 @@
 
     <link rel="stylesheet" href="css/buttons.css">
 
+
     <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
           rel="stylesheet">
+
+    <script src="/sweetalert2/dist/sweetalert2.all.js"></script>
+
+    <!-- Local
+
+        <script src="/Teach-me-front/sweetalert2/dist/sweetalert2.all.js"></script>
+        heroku
+        <script src="/sweetalert2/dist/sweetalert2.all.js"></script>
+         -->
 
 </head>
 
@@ -67,7 +77,7 @@
                         <div class="col col-sm" >
                             <form class="form-inline">
                                 <div class="form-group">
-                                    <input class="form-control" id="class_search" placeholder="search class">
+                                    <input class="form-control" id="class_search" placeholder="search class" required>
                                     <a class="btn" onclick="Moduleindex.redirectSearchResults()"><span class="material-icons" style="font-size: 36px;">search </span></a>
                                 </div>
                             </form>
@@ -122,6 +132,7 @@
                         <div class="col" style="text-align: center">
                             <button type="button" class="btn btn-primary" onclick="window.location.href='createclass.html'">Create class</button>
                         </div>
+
                     </div>
 
                 </div>

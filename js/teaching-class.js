@@ -17,6 +17,7 @@ var ModuleTeachingClasse = (function () {
 
     function _write(data){
         $("#class_name").append(data.nombre);
+        $("#class_availability").append((data.capacity-data.amountOfStudents));
         $("#description_class").append(data.description);
         $("#date_of_init").append(formatDate(data.dateOfInit));
         $("#date_of_end").append(formatDate(data.dateOfEnd));
