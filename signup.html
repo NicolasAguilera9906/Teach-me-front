@@ -73,6 +73,22 @@
                             <button type="button" class="btn btn-primary" onclick="ModuleSignup.createUser()">Create user</button>
                         </div>
 
+                        <script>
+                            $('#pass').keypress(function(e) {
+                                if (e.which === 13) {
+                                    ModuleSignup.createUser();
+                                    e.preventDefault();
+                                }
+                            });
+
+                            $('#description_signup').keypress(function(e) {
+                                if (e.which === 13) {
+                                    ModuleSignup.createUser();
+                                    e.preventDefault();
+                                }
+                            });
+                        </script>
+
                     </form>
                 </div>
                 <div class="signup-image">

@@ -26,12 +26,12 @@ var ModuleSignup = (function () {
         }else if (lastName===""){
             bool = false;
             alertError("The last name cannot be empty");
-        }else if (password===""){
-            bool = false;
-            alertError("The password cannot be empty");
         }else if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email))){
             bool = false;
             alertError("Enter a valid email");
+        }else if (password===""){
+            bool = false;
+            alertError("The password cannot be empty");
         }
         return bool;
     }
