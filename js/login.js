@@ -27,7 +27,7 @@ var login = (function () {
                     Swal.fire({
                         icon: "error",
                         title: "Oops...",
-                        text: "Usuario o contraseña incorrectos"
+                        text: "Usuario o clave incorrectos"
                     });
             });
         //})
