@@ -1,6 +1,8 @@
 <html>
 <head>
     <title>Chat</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <script
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
@@ -17,8 +19,8 @@
 
     <link rel="stylesheet" href="css/chat.css">
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
     <!------ Include the above in your HEAD tag ---------->
 
@@ -47,40 +49,68 @@
 
 
 <div class="container">
+
+
     <div class="card" style="border-style: none; border-radius: 25px !important; box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.75);">
         <div class="card-body" style="font-family: 'Montserrat', sans-serif !important;">
 
-            <div id="center" class="row"  >
-                <div class="message-wrap col-lg-8" >
-                    <div id="message-container" class="msg-wrap">
+
+            <div  class="row" style="height: 45%;">
 
 
 
+                <div class="col" style="border-style: solid">
+                    <h1>canvas</h1>
+                </div>
+
+
+            </div>
+
+
+
+
+            <div class="row" >
+                <div class="col" style="border-style: solid">
+                    <h1>webcam</h1>
+                </div>
+
+                <div id="center" class="col"  >
+                    <div style="height: border-box;">
+                    <div class="message-wrap" >
+                        <div id="message-container" class="msg-wrap">
+
+
+                        </div>
+
+
+
+                        <div class="send-wrap " style="text-align: center">
+
+                            <form id="messageForm">
+                                <input type="text" id="messageInput" placeholder="Type..."/>
+                                <button type="button"  id="btn" onclick="ModuleChat.sendMessage(messageInput.value)"> Send </button>
+                            </form>
+
+                            <script>
+                                $('#messageInput').keypress(function(e) {
+                                    if (e.which === 13) {
+                                        ModuleChat.sendMessage(messageInput.value);
+                                        e.preventDefault();
+                                    }
+                                });
+                            </script>
+
+                        </div>
                     </div>
-
-
-
-                    <div class="send-wrap " style="text-align: center">
-
-                        <form id="messageForm">
-                            <input type="text" id="messageInput" placeholder="Type..."/>
-                            <button type="button"  id="btn" onclick="ModuleChat.sendMessage(messageInput.value)"> Send </button>
-                        </form>
-
-                        <script>
-                            $('#messageInput').keypress(function(e) {
-                                if (e.which === 13) {
-                                    ModuleChat.sendMessage(messageInput.value);
-                                    e.preventDefault();
-                                }
-                            });
-                        </script>
 
                     </div>
 
                 </div>
 
+
             </div>
+
+
             <div class="row" style="text-align: center">
                 <div class="col" >
                     <button type="button" class="btn btn-primary" onclick="window.location.href='index.html'">Return</button>
