@@ -2,7 +2,7 @@
 {
     box-shadow: -2px 0 3px #ddd;
     padding:0;
-    max-height: 400px;
+    max-height: 350px;
     overflow: auto;
 }
 .conversation
@@ -28,7 +28,7 @@
 .msg-wrap
 {
     padding:10px;
-    max-height: 400px;
+    max-height: 350px;
     overflow: auto;
 
 }
