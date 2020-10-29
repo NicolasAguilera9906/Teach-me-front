@@ -211,6 +211,18 @@ var apiclient = (function () {
         return data;
     }
 
+    function getDraw(classId,callback,token){
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/draws/"+classId,
+            type: "GET",
+            headers: {"Authorization": token},
+            success : function (data, text) {
+                callback(data);
+            }});
+
+        return data;
+    }
+
     return {
         postClass:postClass,
         getClassByName:getClassByName,
@@ -226,7 +238,8 @@ var apiclient = (function () {
         getUser:getUser,
         postRequest:postRequest,
         deleteClass:deleteClass,
-        getMessagesById:getMessagesById
+        getMessagesById:getMessagesById,
+        getDraw:getDraw
     };
 
 })();
