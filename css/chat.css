@@ -144,7 +144,6 @@ body::-webkit-scrollbar {
     background: #ddd;
 }
 
-
 #center {
     display: flex;
     justify-content: center;
