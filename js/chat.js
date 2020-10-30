@@ -15,7 +15,11 @@ var ModuleChat = (function () {
     }
 
     var stompClient =  null;
-    const urlAPI = "https://teach2-me.herokuapp.com";
+    /*
+       LOCAL
+       http://localhost:63342/Teach-me-front
+     */
+    const urlAPI = "https://teache-me-front.herokuapp.com";
     var classId = getParameterByName("class");
     var email = localStorage.getItem("username");
     let _apiclient = urlAPI+"/js/apiclient.js";
