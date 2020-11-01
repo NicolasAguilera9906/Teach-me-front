@@ -41,7 +41,7 @@ var ModuleCanvas = (function () {
                 for (var j = 0; j < responseDraw.points.length; j++) {
                     var pointY = responseDraw.points[j].y
                     var pointX = responseDraw.points[j].x
-                    draw.ColorCell(pointX,pointY)
+                    draw.ColorCell(pointX,pointY,responseDraw.points[j].color)
                 }
                 paint={points:[]}
             });
@@ -49,9 +49,10 @@ var ModuleCanvas = (function () {
     }
 
     class Point {
-        constructor(x, y) {
+        constructor(x, y,color) {
             this.x = x;
             this.y = y;
+            this.color=color;
         }
     }
 
@@ -59,21 +60,20 @@ var ModuleCanvas = (function () {
         stompClient.send("/app/draws."+classId,{},JSON.stringify(paint));
     }
 
-    draw.ColorCell=function(x,y){
+    draw.ColorCell=function(x,y,color){
         var rw = x - 1;
         var rh = y - 1;
         rw = rw - rw % 5 + 0.5;
         rh = rh - rh % 5 + 0.5;
-        console.log(color);
         context.fillStyle = color;
         context.fillRect( rw, rh, 5, 5);
     };
     draw.single = function (e) {
         var mouseX=parseInt(e.clientX-offsetX);
         var mouseY=parseInt(e.clientY-offsetY);
-        paint.points.push(new Point(mouseX,mouseY));
+        paint.points.push(new Point(mouseX,mouseY,color));
         sendDraw(paint);
-        draw.ColorCell(mouseX,mouseY);
+        draw.ColorCell(mouseX,mouseY,color);
     };
     // mousemove
     draw.move = function (e) {
@@ -97,9 +97,9 @@ var ModuleCanvas = (function () {
             var X = parseInt(lastX + dx*pct);
             var Y = parseInt(lastY + dy*pct);
             if( !(X==lastForX && Y==lastForY) ){
-                paint.points.push(new Point(X,Y));
+                paint.points.push(new Point(X,Y,color));
                 sendDraw(paint);
-                draw.ColorCell(X,Y);
+                draw.ColorCell(X,Y,color);
             }
             lastForX=X;
             lastForY=Y;
