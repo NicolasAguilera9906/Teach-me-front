@@ -39,11 +39,6 @@ var ModuleCanvas = (function () {
                 var responseDraw = JSON.parse(response.body)
                 console.log(responseDraw);
                 draw.ColorCell(responseDraw.x,responseDraw.y,responseDraw.color)
-                /*for (var j = 0; j < responseDraw.points.length; j++) {
-                    var pointY = responseDraw.points[j].y
-                    var pointX = responseDraw.points[j].x
-                    draw.ColorCell(pointX,pointY,responseDraw.points[j].color)
-                }*/
             });
             stompClient.subscribe('/topic/board.'+classId , function () {
                 clear(false);
