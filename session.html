@@ -8,9 +8,12 @@
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
 
+
+
     <script type="text/javascript" src="js/apiclient.js"></script>
     <script type="text/javascript" src="js/chat.js"></script>
     <script type="text/javascript" src="js/canvas.js"></script>
+    <script type="text/javascript" src="js/camera.js"></script>
     <script type="text/javascript" src="js/validator.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
 
@@ -19,6 +22,7 @@
 
 
     <link rel="stylesheet" href="css/chat.css">
+
 
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -43,6 +47,8 @@
             ModuleChat.loadMessages();
             ModuleCanvas.initCanvas();
             ModuleCanvas.connectToBoard();
+            ModuleCamera.init()
+
         }
 
     </script>
@@ -52,6 +58,8 @@
 
 
 <div class="container">
+
+
 
 
     <div class="card" style="border-style: none; border-radius: 25px !important; box-shadow: 0px 0px 20px -7px rgba(0,0,0,0.75);">
@@ -83,12 +91,17 @@
 
 
 
-
-
-
             <div class="row" >
                 <div class="col" style="border:1px solid #000000">
-                    <h1>webcam</h1>
+                    <div style="height: border-box;text-align: center">
+                        <video autoplay="true" id="videoElement" style="max-height: 300px;">
+
+
+
+                    </video>
+                    </div>
+
+
                 </div>
 
                 <div id="center" class="col"  >

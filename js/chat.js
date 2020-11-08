@@ -21,6 +21,7 @@ var ModuleChat = (function () {
     let _apiclient = urlAPI+"/js/apiclient.js";
 
     function putMessage(user,message,date){
+        console.log("HOLAAA CHAT")
         document.getElementById("message-container").innerHTML +="<div class=\"media msg \">\n" +
             "\n" +
             "                    <div class=\"media-body\">\n" +
@@ -66,6 +67,7 @@ var ModuleChat = (function () {
         stompClient.connect({},function (frame) {
             console.log("Connected to: " + frame);
             stompClient.subscribe('/topic/messages.'+classId , function (response) {
+                console.log("HOLAA CHAT");
                 console.log(response.body);
                 var message = JSON.parse(response.body);
                 var dateSend = new Date();
