@@ -80,6 +80,34 @@ var ModuleTeachingClasse = (function () {
         });
     }
 
+    function redirectToSession(data) {
+        var classId = getParameterByName("class");
+        var currentTime = new Date();
+        var dateOfInit = new Date(formatDate(data.dateOfInit));
+        var dateOfEnd = new Date(formatDate(data.dateOfEnd));
+        if(currentTime>=dateOfInit && currentTime<=dateOfEnd){
+            window.location.href="session.html?class="+classId;
+        }
+        else{
+            Swal.fire({
+                position: "center",
+                icon: "error",
+                title: "Oops...",
+                text: "The class has not started or has already ended",
+                showConfirmButton: false,
+                timer: 2500
+            });
+        }
+    }
+
+    function connectToClass(){
+        var token = localStorage.getItem("Authorization");
+        var classId = getParameterByName("class");
+        $.getScript(_apiclient,function(){
+            apiclient.getClassById(classId,redirectToSession,token);
+        });
+    }
+
     function viewRequests(){
         var classId = getParameterByName("class");
         window.location.href='accept.html?class='+classId;
@@ -88,6 +116,7 @@ var ModuleTeachingClasse = (function () {
     return {
         getClass:getClass,
         deleteClass:deleteClass,
-        viewRequests:viewRequests
+        viewRequests:viewRequests,
+        connectToClass:connectToClass
     };
 })();
