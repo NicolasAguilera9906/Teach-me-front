@@ -44,7 +44,7 @@
                 <div class="signin-form">
                     <h2 class="form-title">Login</h2>
 
-                    <form class="register-form" id="login-form">
+                    <form method="POST" class="register-form" id="login-form">
 
                         <div class="form-group">
                             <label for="username"><i class="zmdi zmdi-email"></i></label>
@@ -58,7 +58,7 @@
 
 
                         <div class="form-group" >
-                            <button id="sign_in" type="button" class="btn btn-primary" onclick="login.doLogin()" >Login</button>
+                            <button id="sign_in"  formmethod="post" type="button" class="btn btn-primary" onclick="login.doLogin()" >Login</button>
                         </div>
 
                         <script>
