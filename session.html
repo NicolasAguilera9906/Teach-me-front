@@ -99,6 +99,14 @@
                         <div id="render" style="height: 300px; width: 300px; display: inline-block;"></div>
                         <br>
                         <button onclick="joinCall()">Connect</button>
+                        <script>
+                            $(document).keydown(function(e) {
+                                if (e.which === 67) {
+                                    joinCall();
+                                    e.preventDefault();
+                                }
+                            });
+                        </script>
 
                     </div>
 
