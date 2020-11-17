@@ -59,7 +59,7 @@
 <script src="https://static.vidyo.io/latest/javascript/VidyoClient/VidyoClient.js?onload=onVidyoClientLoaded"></script>
 
 
-<div class="container">
+<div class="container" id="container">
 
 
 
@@ -95,11 +95,10 @@
 
             <div class="row" >
                 <div class="col" style="border:1px solid #000000">
-                    <div style="height: border-box;text-align: center">
-                        <div id="render" style="height: 300px; width: 300px;"></div>
+                    <div style="height: border-box;text-align: center;">
+                        <div id="render" style="height: 300px; width: 300px; display: inline-block;"></div>
                         <br>
                         <button onclick="joinCall()">Connect</button>
-
 
                     </div>
 
