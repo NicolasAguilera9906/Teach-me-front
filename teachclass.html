@@ -107,6 +107,14 @@
 
                                 <button type="button" class="btn btn-primary" onclick="ModuleTeachingClasse.viewRequests()" style="margin-top: 5%;">View Requests</button>
                                 <button id ="connect" type="button"  onclick="ModuleTeachingClasse.connectToClass()" class="btn btn-primary" style="margin-top: 5%;">Connect </button>
+                                <script>
+                                    $(document).keydown(function(e) {
+                                        if (e.which === 67) {
+                                            ModuleTeachingClasse.connectToClass();
+                                            e.preventDefault();
+                                        }
+                                    });
+                                </script>
                             </div>
 
                         </div>
