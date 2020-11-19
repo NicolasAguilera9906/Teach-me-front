@@ -100,7 +100,7 @@
         setName().then(function (name){
             vidyoConnecto.Connect({
                 host:"prod.vidyo.io",
-                token: "cHJvdmlzaW9uAGp1YW5AMjU5NWNlLnZpZHlvLmlvADYzNzcyODg0NDYxAAA1MDhiNTQ0MWY4MzFhNmYxN2RkMjA2NjUyMWVkMjE5MDI3YzM3MGFkZWJmMGQ1ZmRiMDQ4Yzc2ZWNmOTU2YzI2ZmNmNDNjZWNlZDI1Yjg3Zjg1MDYyMmE2YTJlMWU2ZWQ=",
+                token: "cHJvdmlzaW9uAGp1YW5AMjU5NWNlLnZpZHlvLmlvADYzNzczMTAxMjg5AABkZGJiZmQ5MmQwMzY2NWYyNTVkOGYwOTFjZDI2OWEzNjAwMWU0NDQ0OTY5MzIwOGU2NDk1ZTk0MjQwODU3YjRhYjU2ZTlkMDFmMjI0YTZkYTRhNTRlOGUyNzc2ZTQyZGQ=",
                 displayName:name,
                 resourceId: getParameterByName("class"),
                 onSuccess: function (){
