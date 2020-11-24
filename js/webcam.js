@@ -2,6 +2,7 @@
 
     var vidyoConnecto;
 
+    var idUser;
 
     function getParameterByName(name) {
         name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -10,16 +11,7 @@
         return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     }
 
-    async function getName(){
 
-        var name= await apiclient.getUser(localStorage.getItem("username"),localStorage.getItem("Authorization")).
-        then(function (data){
-            return data.firstName+" "+data.lastName;
-
-        });
-        return name;
-
-    }
 
     const getName1 = apiclient.getUser(localStorage.getItem("username"),localStorage.getItem("Authorization")).
         then(function (data){
@@ -96,25 +88,61 @@
             });
         }
     }
+
+
+    async function getName(){
+
+        var id= await apiclient.getUser(localStorage.getItem("username"),localStorage.getItem("Authorization")).
+        then(function (data){
+            return data.id;
+
+        });
+        return id;
+
+    }
+
+    function showToken(){
+        getName().then(function (id) {
+            idUser=id;
+            console.log(id)
+        })
+
+
+    }
+
     function joinCall(){
         setName().then(function (name){
-            vidyoConnecto.Connect({
-                host:"prod.vidyo.io",
-                token: "cHJvdmlzaW9uAGp1YW5AMjU5NWNlLnZpZHlvLmlvADYzNzczMTAxMjg5AABkZGJiZmQ5MmQwMzY2NWYyNTVkOGYwOTFjZDI2OWEzNjAwMWU0NDQ0OTY5MzIwOGU2NDk1ZTk0MjQwODU3YjRhYjU2ZTlkMDFmMjI0YTZkYTRhNTRlOGUyNzc2ZTQyZGQ=",
-                displayName:name,
-                resourceId: getParameterByName("class"),
-                onSuccess: function (){
+            getName().then(function (id) {
+                apiclient.getTokenCall(localStorage.getItem("username"),localStorage.getItem("Authorization"),id).
+                    then(function (token) {
+                        console.log(token);
+                        console.log(name);
 
-                },
-                onFailure: function (reason){
-                    console.log("error " + reason)
-                },
-                onDisconnected: function (reason) {
-                    console.log("error " + reason)
 
-                }
+                    vidyoConnecto.Connect({
+                        host:"prod.vidyo.io",
+                        token: token,
+                        displayName:name,
+                        resourceId: getParameterByName("class"),
+                        onSuccess: function (){
 
+                        },
+                        onFailure: function (reason){
+                            console.log("error " + reason)
+                        },
+                        onDisconnected: function (reason) {
+                            console.log("error " + reason)
+
+                        }
+
+                    })
+
+
+
+                })
             })
+
+
         })
 
     }

@@ -67,10 +67,6 @@ var Moduleindex = (function () {
     }
 
 
-
-
-
-
     return {
         getStudyingClasses:getStudyingClasses,
         getTeachingClasses:getTeachingClasses,

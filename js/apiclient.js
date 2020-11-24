@@ -222,6 +222,15 @@ var apiclient = (function () {
         return data;
     }
 
+    function getTokenCall(email,token,userId){
+        var data = $.ajax({
+            url: "https://teach2-me.herokuapp.com/api/v1/"+userId+"/token",
+            type: "GET",
+            headers: {"Authorization": token , "x-userEmail" : email}
+            });
+        return data;
+    }
+
     return {
         postClass:postClass,
         getClassByName:getClassByName,
@@ -238,7 +247,8 @@ var apiclient = (function () {
         postRequest:postRequest,
         deleteClass:deleteClass,
         getMessagesById:getMessagesById,
-        getDraw:getDraw
+        getDraw:getDraw,
+        getTokenCall:getTokenCall
     };
 
 })();
