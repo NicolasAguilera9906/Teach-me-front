@@ -88,7 +88,7 @@ var ModuleStudyingClass = (function () {
                         title: "The status of your request is",
                         text: _status,
                     });
-                })
+                });
             });
         });
     }

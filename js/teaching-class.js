@@ -76,7 +76,7 @@ var ModuleTeachingClasse = (function () {
                             window.location.href=urlAPI+"/index.html";
                         });
                     }
-                })
+                });
         });
     }
 

@@ -63,7 +63,7 @@ var Moduleindex = (function () {
         apiclient.getUser(localStorage.getItem("username"),localStorage.getItem("Authorization")).
             then(function (data){
                 document.getElementById("welcome").innerHTML = "Welcome "+data.firstName+" "+data.lastName;
-        })
+        });
     }
 
 

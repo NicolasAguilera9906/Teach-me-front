@@ -21,7 +21,6 @@ var ModuleChat = (function () {
     let _apiclient = urlAPI+"/js/apiclient.js";
 
     function putMessage(user,message,date){
-        console.log("HOLAAA CHAT")
         document.getElementById("message-container").innerHTML +="<div class=\"media msg \">\n" +
             "\n" +
             "                    <div class=\"media-body\">\n" +
@@ -60,15 +59,10 @@ var ModuleChat = (function () {
     }
 
     function connectToChat() {
-        console.log("Conecting to chat...");
         let socket = new SockJS(urlAPI + '/chat');
         stompClient = Stomp.over(socket);
-        console.log(stompClient);
         stompClient.connect({},function (frame) {
-            console.log("Connected to: " + frame);
             stompClient.subscribe('/topic/messages.'+classId , function (response) {
-                console.log("HOLAA CHAT");
-                console.log(response.body);
                 var message = JSON.parse(response.body);
                 var dateSend = new Date();
                 var date = dateSend.getHours()+":"+dateSend.getMinutes();
@@ -82,14 +76,12 @@ var ModuleChat = (function () {
         var message = new Messsage(_message,email);
         stompClient.send("/app/messages."+classId,{},JSON.stringify(message));
         $("#messageInput").val('');
-        console.log(email+" :"+_message);
     }
 
     function disconnect(){
         if (stompClient !== null) {
             stompClient.disconnect();
         }
-        console.log("Disconnected");
     }
 
     return {

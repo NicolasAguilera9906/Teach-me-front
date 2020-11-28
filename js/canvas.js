@@ -3,6 +3,15 @@ var ModuleCanvas = (function () {
     var stompClient =  null;
 
     const urlAPI = "https://teach2-me.herokuapp.com";
+
+    function getParameterByName(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+
     var classId = getParameterByName("class");
     var email = localStorage.getItem("username");
     let _apiclient = urlAPI+"/js/apiclient.js";
@@ -21,23 +30,16 @@ var ModuleCanvas = (function () {
     var draw = function (e) {};
     draw.started = false;
 
-    function getParameterByName(name) {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-            results = regex.exec(location.search);
-        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-    }
+
 
     function connectToBoard() {
-        console.log("Conecting to board...");
         let socket = new SockJS(urlAPI + '/board');
         stompClient = Stomp.over(socket);
         console.log(stompClient);
         stompClient.connect({},function (frame) {
             console.log("Connected to: " + frame);
             stompClient.subscribe('/topic/draws.'+classId , function (response) {
-                var responseDraw = JSON.parse(response.body)
-                console.log(responseDraw);
+                var responseDraw = JSON.parse(response.body);
                 draw.ColorCell(responseDraw.x,responseDraw.y,responseDraw.color)
             });
             stompClient.subscribe('/topic/board.'+classId , function () {
@@ -51,6 +53,14 @@ var ModuleCanvas = (function () {
             this.x = x;
             this.y = y;
             this.color=color;
+        }
+    }
+
+
+    function clear(send){
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        if(send) {
+            stompClient.send("/app/board." + classId, {}, "clear");
         }
     }
 
@@ -93,7 +103,7 @@ var ModuleCanvas = (function () {
             var dy = mouseY-lastY;
             var X = parseInt(lastX + dx*pct);
             var Y = parseInt(lastY + dy*pct);
-            if( !(X==lastForX && Y==lastForY) ){
+            if( !(X===lastForX && Y===lastForY) ){
                 sendDraw(new Point(X,Y,color));
                 draw.ColorCell(X,Y,color);
             }
@@ -122,12 +132,7 @@ var ModuleCanvas = (function () {
         color = this.value;
     }
 
-    function clear(send){
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        if(send) {
-            stompClient.send("/app/board." + classId, {}, "clear");
-        }
-    }
+
 
     function initCanvas(){
         document.getElementById("color").onchange = change;
